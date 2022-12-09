@@ -1,16 +1,37 @@
+/* modernplayer 0.3 mod by Zwiebus*/
 body {
   background-color: lightgreen;
 
   /* Smoothly transition the background color */
   transition: background-color .5s;
 }
+.list-group {
+        --bs-list-group-bg: #EAE2F7!Important;
+        margin-top: 5px;
+}
+
+.list-group-item p, .list-group-item span {
+        display: inline;
+        font-weight: normal;
+        color: #300080;
+        margin: 0.02em;
+}
+
+.list-group-item span {
+        float: left;
+}
+
+.list-group-item p {
+        float: right;
+}
 
 .player {
-  height: 95vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 1;
 }
 
 .details {
@@ -22,16 +43,17 @@ body {
 }
 
 .track-art {
-  margin: 25px;
-  height: 250px;
-  width: 250px;
-  background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-  background-size: cover;
-  border-radius: 15%;
+        margin: 20px;
+        height: 250px;
+        width: 250px;
+        background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+        background-size: cover;
+        background-position: center;
+        border-radius: 2%;
 }
 
 .now-playing {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .track-name {
@@ -40,23 +62,6 @@ body {
 
 .track-artist {
   font-size: 1.5rem;
-}
-
- .track-number,.playlist {
-   font-size: 1.3rem;
-   text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.8);
-   cursor:pointer;
-}
-
- .track-number:hover {
-   color: #AAE4FF;
-   text-decoration:underline;
-}
-
- .playlist {
-   position:relative;
-   top:10px;
-   left:10px;    
 }
 
 .buttons {
@@ -78,57 +83,56 @@ body {
 }
 
 .slider_container {
-  width: 75%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        width: 75%;
+        max-width: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6px;
 }
 
-/* Modify the appearance of the slider */
 .seek_slider, .volume_slider {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 5px;
-  background: black;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        height: 5px;
+        background: black;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
 }
 
-/* Modify the appearance of the slider thumb */
 .seek_slider::-webkit-slider-thumb, .volume_slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background: white;
-  cursor: pointer;
-  border-radius: 50%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        background: white;
+        cursor: pointer;
+        border-radius: 50%;
 }
 
 .seek_slider:hover, .volume_slider:hover {
-  opacity: 1.0;
+        opacity: 1.0;
 }
 
 .seek_slider {
-  width: 60%;
+        width: 60%;
 }
 
 .volume_slider {
-  width: 30%;
+        width: 30%;
 }
 
 .current-time, .total-duration {
-  padding: 10px;
+        padding: 10px;
 }
 
 i.fa-volume-down, i.fa-volume-up {
-  padding: 10px;
+        padding: 10px;
 }
 
 i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
-  cursor: pointer;
+        cursor: pointer;
 }
