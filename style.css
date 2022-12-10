@@ -1,10 +1,11 @@
-/* modernplayer 1.0.2 mod by Zwiebus*/
+/* modernplayer 1.0.2 mod by Zwiebus */
 body {
   background-color: lightgreen;
 
   /* Smoothly transition the background color */
   transition: background-color .5s;
 }
+/* bootstrap */
 .list-group {
         --bs-list-group-bg: #EAE2F7!Important;
         margin-top: 5px;
@@ -35,11 +36,11 @@ body {
 }
 
 .details {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 25px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 25px;
 }
 
 .track-art {
@@ -53,33 +54,33 @@ body {
 }
 
 .now-playing {
-  font-size: 1.1rem;
+        font-size: 1.2rem;
 }
 
 .track-name {
-  font-size: 3rem;
+        font-size: 3rem;
 }
 
 .track-artist {
-  font-size: 1.5rem;
+        font-size: 1.5rem;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 }
 
 .playpause-track, .prev-track, .next-track {
-  padding: 25px;
-  opacity: 0.8;
+        padding: 25px;
+        opacity: 0.8;
 
   /* Smoothly transition the opacity */
-  transition: opacity .2s;
+        transition: opacity .2s;
 }
 
 .playpause-track:hover, .prev-track:hover, .next-track:hover {
-  opacity: 1.0;
+        opacity: 1.0;
 }
 
 .slider_container {
