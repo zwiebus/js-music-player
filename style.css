@@ -1,10 +1,9 @@
 body {
-  background-color: lightgreen;
-
+        background-color: lightgreen;
   /* Smoothly transition the background color */
-  transition: background-color .5s;
+        transition: background-color .5s;
 }
-/* bootstrap */
+
 .list-group {
         --bs-list-group-bg: #EAE2F7!Important;
         margin-top: 5px;
@@ -34,6 +33,12 @@ body {
         z-index: 1;
 }
 
+#range_value {
+        font-size: 14px;
+        margin-bottom: -8px;
+        margin-top: -15px;
+}
+
 .details {
         display: flex;
         align-items: center;
@@ -53,7 +58,7 @@ body {
 }
 
 .now-playing {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
 }
 
 .track-name {
@@ -73,7 +78,6 @@ body {
 .playpause-track, .prev-track, .next-track {
         padding: 25px;
         opacity: 0.8;
-
   /* Smoothly transition the opacity */
         transition: opacity .2s;
 }
