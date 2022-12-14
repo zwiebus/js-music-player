@@ -156,4 +156,14 @@ function seekUpdate() {
   }
 }
 
+ var slider = document.getElementById("rangeValue");
+ var output = document.getElementById("range_value");
+  output.innerHTML = slider.value + " %";
+  slider.oninput = function() {
+   output.innerHTML = this.value + " %";
+}
+
+    // Load the first track in the tracklist
+    loadTrack(track_index);
+
 
