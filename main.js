@@ -155,7 +155,7 @@ function seekUpdate() {
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 }
-
+ // display range value
  var slider = document.getElementById("rangeValue");
  var output = document.getElementById("range_value");
   output.innerHTML = slider.value + " %";
