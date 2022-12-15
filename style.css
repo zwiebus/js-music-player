@@ -14,7 +14,7 @@ body {
         display: inline;
         font-weight: normal;
         color: #300080;
-        margin: 0.02em;
+        margin: -0.02em;
 }
 
 .list-group-item span {
