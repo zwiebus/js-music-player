@@ -4,11 +4,12 @@ body {
         transition: background-color .5s;
 }
 
+.container {
+        max-width:450px!Important;
+}
 .list-group {
-        --bs-list-group-bg: #EAE2F7!Important;
         margin-top: 5px;
 }
-
 .list-group-item p, .list-group-item span {
         display: inline;
         font-weight: normal;
