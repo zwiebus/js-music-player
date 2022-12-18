@@ -162,8 +162,3 @@ function seekUpdate() {
   slider.oninput = function() {
    output.innerHTML = this.value + " %";
 }
-
-    // Load the first track in the tracklist
-    loadTrack(track_index);
-
-
