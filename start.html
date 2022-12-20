@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Link example</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="opensans/opensans.css"/>
+</head>
+<body>
+<div style="margin: 50px;">
+ <a class="sta" href="index.html" onclick="playerOpen(this);this.blur();return false;" target="_blank" title="In separatem Fenster oeffnen">Standalone Audioplayer</a>
+</div>
+<script type="text/javascript">
+function playerOpen(sta){
+    var x = screen.width/2 - 350/2;
+    var y = screen.height/2 - 640/2;
+    window.open(sta.href, 'sharegplus','height=640,width=350,left='+x+',top='+y);
+}
+</script>
+</body>
+</html>

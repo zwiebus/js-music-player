@@ -1,0 +1,207 @@
+body {
+        background: #2F2F2F;
+        font-family: OpenSans;
+        font-size: 14px;
+        color: #fff;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+}
+.content {
+        position: relative;
+        width: 330px;
+        height: 560px;
+}
+
+.sta {
+        background: #3F3F3F;
+        font-size: 15px;
+        color:#fff;
+        text-decoration: none;
+        padding: 3px 10px;
+        border: solid 1px #1a1a1a;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.sta:hover {
+        background: #4F4F4F;
+}
+
+#playlist {
+        position: absolute;
+        top: 63px;
+        left: 23px;
+        z-index: 22;
+}
+
+.tooltip {
+        text-align: center;
+        background: #333333;
+        display: none;
+        position: absolute;
+        top: 224px;
+        left: 30px;
+        min-width: 210px;
+        max-width: 250px;
+        overflow: hidden;
+        z-index: 99;
+}
+
+.tooltip p {
+        font-size: 13px;
+        margin-top: 5px;
+        margin-left: 14px;
+}
+
+:hover + .tooltip {
+        display: block;
+}
+
+.tooltip::before {
+        font: var(--fa-font-solid);
+        content: "\f04b";
+        size: 14px;
+        float: left;
+        padding-top: 4px;
+        padding-right: 4px;
+        padding-left: 0;
+}
+
+.player {
+        background: rgba(146, 146, 146, 0.03);
+        width: 300px;
+        height: 502px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 5px;
+        margin-left: 15px;                     
+        z-index: 1;
+}
+
+.details {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+}
+
+.track-art {
+        margin-top: 10px;
+        height: 200px;
+        width: 200px;
+        background-image: URL("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+        background-size: cover;
+        background-position: center;
+        border: inset 2px #CFCFCF;
+        border-radius: 2%;
+}
+
+.now-playing {
+        font-size: 0.9rem;
+}
+
+.track-name {
+        margin-top: 10px;
+}
+
+.track-artist {
+        font-size: 13px;
+        margin-top: 5px;
+}
+
+.track-number {
+        position: relative;
+        opacity: 0.8;
+}
+
+#range_value {
+        font-size: 11px;
+        margin-bottom: -8px;
+        margin-top: -5px;
+}
+
+.buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+}
+
+.playpause-track, .prev-track, .next-track {
+        padding: 25px;
+        opacity: 0.8;
+      /* Smoothly transition the opacity */
+        transition: opacity .2s;
+}
+
+.playpause-track:hover, .prev-track:hover, .next-track:hover, .track-number:hover {
+        opacity: 1.0;
+}
+
+.slider_container {
+        width: 75%;
+        max-width: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+    /* Modify the appearance of the slider */
+.seek_slider, .volume_slider {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        height: 6px;
+        background: Silver;
+        border: solid 1px #3F3F3F;
+        border-radius: 4px;
+        opacity: 0.8;
+        -webkit-transition: .2s;
+        -moz-transition: .2s;
+        -o-transition: .2s;
+        transition: opacity .2s;
+}
+    /* Modify the appearance of the slider thumb */
+.seek_slider::-webkit-slider-thumb, .volume_slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 11px;
+        height: 21px;
+        background: white;
+        border: solid 2px #3b255a;
+        border-radius: 8px;
+        cursor: pointer;
+}
+
+.seek_slider::-webkit-slider-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+}
+
+.seek_slider:hover, .volume_slider:hover {
+        opacity: 1.0;
+}
+
+.seek_slider {
+        width: 70%;
+}
+
+.volume_slider {
+        width: 35%;
+}
+
+.current-time, .total-duration {
+        padding: 10px;
+}
+
+.fa-volume-down,  .fa-volume-up {
+        padding: 10px;
+}
+
+.fa-play-circle, .fa-pause-circle, .fa-step-forward, .fa-step-backward, .sta , .track-number{
+        cursor: pointer;
+}
