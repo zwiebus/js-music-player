@@ -1,5 +1,5 @@
 body {
-        background: #2F2F2F;
+        background: #202225;
         font-family: OpenSans;
         font-size: 14px;
         color: #fff;
@@ -38,7 +38,7 @@ body {
 
 .tooltip {
         text-align: center;
-        background: #333333;
+        background: #242629;
         display: none;
         position: absolute;
         top: 224px;
