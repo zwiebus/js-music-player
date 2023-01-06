@@ -136,12 +136,10 @@ function seekUpdate() {
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 }
- // Load the first track in the tracklist
-  loadTrack(track_index);
 
  // show the current volume value
-  let slider = document.getElementById("rangeValue");
-  let output = document.getElementById("range_value");
+  let slider = document.getElementById("volumeValue");
+  let output = document.getElementById("volume_value");
   output.innerHTML = slider.value + " %";
   slider.oninput = function() {
    output.innerHTML = this.value + " %";
@@ -162,3 +160,6 @@ function seekUpdate() {
     }
    }
   }
+
+ // Load the first track in the tracklist
+  loadTrack(track_index);
