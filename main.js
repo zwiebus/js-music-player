@@ -44,7 +44,7 @@ let track_list = [
     number: "3",
   },
 ];
-
+<!--/
 function random_bg_color() {
 
   // Get a number between 64 to 256 (for getting lighter colors)
@@ -57,7 +57,7 @@ function random_bg_color() {
 
   // Set the background to that color
   document.body.style.background = bgColor;
-}
+} /-->
 
 function loadTrack(track_index) {
   clearInterval(updateTimer);
