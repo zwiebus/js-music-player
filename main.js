@@ -44,20 +44,6 @@ let track_list = [
     number: "3",
   },
 ];
-<!--/
-function random_bg_color() {
-
-  // Get a number between 64 to 256 (for getting lighter colors)
-  let red = Math.floor(Math.random() * 256) + 64;
-  let green = Math.floor(Math.random() * 256) + 64;
-  let blue = Math.floor(Math.random() * 256) + 64;
-
-  // Construct a color withe the given values
-  let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
-
-  // Set the background to that color
-  document.body.style.background = bgColor;
-} /-->
 
 function loadTrack(track_index) {
   clearInterval(updateTimer);
@@ -71,7 +57,6 @@ function loadTrack(track_index) {
   now_playing.textContent = "Playing " + track_list[track_index].number + " of " + track_list.length;
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
-  random_bg_color();
 }
 
 function resetValues() {
