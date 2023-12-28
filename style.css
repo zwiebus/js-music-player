@@ -1,19 +1,9 @@
-body {
-        background-color: lightgreen;
-  /* Smoothly transition the background color */
-        transition: background-color .5s;
-}
-
-.container {
-        max-width: 450px!Important;
-}
 .list-group {
         margin-top: 5px;
 }
 .list-group-item p, .list-group-item span {
         display: inline;
         font-weight: normal;
-        color: #300080;
         margin: -0.02em;
 }
 
@@ -26,7 +16,11 @@ body {
 }
 
 .player {
+        background-color: #785563;
         border-radius: 5px;
+        color: #fff;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         flex-direction: column;
