@@ -38,7 +38,7 @@ body {
 
 .tooltip {
         text-align: center;
-        background: #242629;
+        background: #282a2e;
         display: none;
         position: absolute;
         top: 224px;
@@ -70,7 +70,7 @@ body {
 }
 
 .player {
-        background: rgba(146, 146, 146, 0.03);
+        background: #282a2e;
         width: 300px;
         height: 502px;
         display: flex;
