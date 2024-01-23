@@ -140,9 +140,9 @@ function seekUpdate() {
  // display range value
  var slider = document.getElementById("volumeValue");
  var output = document.getElementById("volume_value");
-  output.innerHTML = slider.value;
-  slider.oninput = function() {
-   output.innerHTML = this.value;
+output.textContent = slider.value  + " %";
+slider.oninput = function() {
+  output.textContent = this.value + " %";
 }
 
 // Load the first track in the tracklist
