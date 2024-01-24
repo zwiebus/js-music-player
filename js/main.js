@@ -140,9 +140,9 @@ function seekUpdate() {
  // show the current volume value
   let slider = document.getElementById("volumeValue");
   let output = document.getElementById("volume_value");
-  output.innerHTML = slider.value + " %";
+  output.textContent = slider.value  + " %";
   slider.oninput = function() {
-   output.innerHTML = this.value + " %";
+  output.textContent = this.value + " %";
 }
 
  // show/hide playlist
