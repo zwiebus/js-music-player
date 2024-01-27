@@ -15,3 +15,13 @@ The tracks are currently being loaded from the tracklist array specified in main
 
 More tracks can be added by adding a new button class="list-group-item list-group-item-action track-number"  in index.html.
 Make sure that the value number ' ' is always one less than in tracklist objects : 1 = 0, 2 = 1 etc.
+
+# compact-js-music-player
+This is a simple User Interface of a music player created in HTML, CSS and JavaScript.
+
+![Output](/output/html-css.png)
+
+## Information
+
+This branch is designed as a compact standalone version with its own window.
+Use a link as shown in start.html.
