@@ -1,6 +1,7 @@
-# js-music-player
+# mimimal js-music-player
 This is a simple User Interface of a music player created in HTML, CSS and JavaScript.
 
+![Output](/output/html-css1.png)
 ![Output](/output/html-css.png)
 
 ## Running the player
@@ -13,5 +14,9 @@ The tracks are currently being loaded from the tracklist array specified in main
 
 ## Add more tracks to playlist
 
-More tracks can be added by adding a new button class="list-group-item list-group-item-action track-number"  in index.html.
-Make sure that the value number ' ' is always one less than in tracklist objects : 1 = 0, 2 = 1 etc
+More tracks can be added by adding a new div class="track-number"  in index.html.
+Make sure that the number ' ' is always one less than in tracklist array : 1 = 0, 2 = 1 etc.
+
+## Information
+
+This branch is designed as a mimimal version with the ability to show playlist and trackdetails.
