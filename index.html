@@ -1,51 +1,55 @@
-<!doctype html>
-<html lang="en" data-bs-theme="dark">
+<!--
+ * @package minimal-js-music-player
+ * @author sayantanm19
+ * @author Zwiebus
+-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Music Player</title>
+<link rel="shortcut icon" href="playericon.png">
+<title>Minimal Audio Player</title>
+  <!-- Load the custom CSS style file -->
+<link rel="stylesheet" href="css/style.css"/>
+  <!-- Load font family OpenSans -->
+<link rel="stylesheet" href="opensans/opensans.css"/>
   <!-- Load FontAwesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <!-- Load the custom CSS style file -->
-<link rel="stylesheet" type="text/css" href="style.css">
-  <!-- Load the bootstrap CSS style file -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
- <!-- Load the bootstrap JS file --> 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container text-center">  
+<div class="all">
   <div class="player">
-    <div class="details">
-      <div class="now-playing">PLAYING x OF y</div>
-      <div class="track-art"></div>
+     <div class="details">
       <div class="track-name">Track Name</div>
-      <div class="track-artist">Track Artist</div>
+     </div>
+      <div class="buttons">
+       <a class="showhide" style="margin-right:15px" onclick="showHide('playlist', null);" title="Playliste">Playlist</a>
+       <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward"></i></div>
+       <div class="playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle"></i></div>
+       <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward"></i></div>
+       <a class="showhide" style="margin-left:15px" onclick="showHide('times', null);" title="Track Details">Track</a>
+      </div>
+     <div class="details">
+      <div class="slider_container">
+       <div class="tracknumber" style="margin-right:-10px;margin-left:14px"></div>
+       <i class="fa fa-volume-down"></i>
+       <input type="range" min="0" max="100" value="85" class="volume_slider" id="volumeValue" onchange="setVolume()">
+       <i class="fa fa-volume-up"></i>
+       <div id="volume_value" class="volumevalue" style="margin-left:10px;margin-right:10px"></div>
+      </div>
+     </div>
+      <div class="times" id="times">
+       <span class="current-time">00:00</span>
+       <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+       <span class="total-duration">00:00</span>
+      </div>
+      <div class="playlist" id="playlist">
+       <div class="track-number" data-track="1" onclick="numberTrack(track_index ,number = '0')">01.Night Owl - Broke For Free</div>
+       <div class="track-number" data-track="2" onclick="numberTrack(track_index ,number = '1')">02.Enthusiast -Tours</div>
+       <div class="track-number" data-track="3" onclick="numberTrack(track_index ,number = '2')">03.Shipping Lanes - Chad Crouch</div>
+        <!-- add more tracks to playlist -->
+      </div>
     </div>
-    <div class="buttons">
-      <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-2x"></i></div>
-      <div class="playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle fa-5x"></i></div>
-      <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward fa-2x"></i></div>
-    </div>
-    <div class="slider_container">
-      <div class="current-time">00:00</div>
-      <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-      <div class="total-duration">00:00</div>
-    </div>
-     <div id="volume_value"></div>
-    <div class="slider_container">
-      <i class="fa fa-volume-down"></i>
-      <input type="range" min="1" max="100" value="99" class="volume_slider" id="volumeValue" onchange="setVolume()">
-      <i class="fa fa-volume-up"></i>
-    </div>
- </div>
-<!-- /playlist /-->
-   <div class="list-group">
-    <button type="button" class="list-group-item list-group-item-action track-number" onclick="numberTrack(track_index ,number = '0')"><span>01.</span>Broke_For_Free_-_01_-_Night_Owlt<p>03:14</p></button>
-    <button type="button" class="list-group-item list-group-item-action track-number" onclick="numberTrack(track_index ,number = '1')"><span>02.</span>Tours_-_01_-_Enthusiast<p>02:51</p></button>
-    <button type="button" class="list-group-item list-group-item-action track-number" onclick="numberTrack(track_index ,number = '2')"><span>03.</span>Chad_Crouch_-_Shipping_Lanes<p>03:13</p></button>
-   </div>
-</div>
-  <script src="main.js"></script>
-</body>
-</html
+  </div>
+ <script src="js/main.js"></script>
+ </body>
+</html>
