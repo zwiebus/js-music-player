@@ -1,4 +1,4 @@
-# mimimal js-music-player
+# mimimal-js-music-player
 This is a simple User Interface of a music player created in HTML, CSS and JavaScript.
 
 ![Output](/output/html-css.png)
@@ -20,4 +20,4 @@ Make sure that the number ' ' is always one less than in tracklist array : 1 = 0
 
 ## Information
 
-This branch is designed as a mimimal version with the ability to show playlist and trackdetails.
+This branch is designed as a mimimal version with a dark style and the ability to show playlist and trackdetails.
