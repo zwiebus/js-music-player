@@ -35,7 +35,7 @@
     path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
     number: "3",
   },
-];
+ ];
 
     function loadTrack(track_index) {
       clearInterval(updateTimer);
@@ -120,36 +120,36 @@
     // Load the first track in the tracklist
     loadTrack(track_index);
 
-// show/hide playlist or trackdetails
-function showHide(id, styleDisplay, displayInline) {
-   var node = document.getElementById(id);
-    if(node) {
-     if(styleDisplay) {
-      node.style.display = styleDisplay;
-     } else {
-     if(node.style.display == 'none') {
-      node.style.display = (displayInline ? 'inline' : 'block');
-     } else {
-      node.style.display = 'none';
+    // show/hide playlist or trackdetails
+    function showHide(id, styleDisplay, displayInline) {
+     var node = document.getElementById(id);
+      if(node) {
+       if(styleDisplay) {
+        node.style.display = styleDisplay;
+       } else {
+         if(node.style.display == 'none') {
+        node.style.display = (displayInline ? 'inline' : 'block');
+       } else {
+        node.style.display = 'none';
+       }
+      }
      }
     }
-   }
-  }
-// show volume_slider value
+   // show volume_slider value
    let slider = document.getElementById("volumeValue");
    let output = document.getElementById("volume_value");
     output.innerText = slider.value  + " %";
      slider.oninput = function() {
      output.innerText = this.value + " %";
- }
-// highlight the current track
-function active() {
-  const tracklist = document.getElementsByClassName("track-number active");
-  for (let i = 0; i < tracklist.length; i++) {
-    tracklist[i].classList.remove("active");
     }
+    // highlight the current track
+   function active() {
+     const tracklist = document.getElementsByClassName("track-number active");
+     for (let i = 0; i < tracklist.length; i++) {
+       tracklist[i].classList.remove("active");
+       }
    let trackactive = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
        trackactive = track_list[track_index].number;
        curr = document.querySelector('div[data-track="' + trackactive + '"]').classList;
        curr.add("active");
- }
+   }
