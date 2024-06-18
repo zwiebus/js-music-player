@@ -1,11 +1,12 @@
-body, all {
+/* 
+body{
         background-color: #393942;
+}
+*/
+.player {
         color: #d8dbe7;
         font-size: 14px;
-        font-family: OpenSans, Verdana, Arial;
-        overflow: hidden;
-}
-.player {                                 
+        font-family: OpenSans;                               
         background-color: #393942;
         margin: 0 auto;
         padding-bottom: 6px;
@@ -13,9 +14,11 @@ body, all {
         height: 100%;
         border: 1px solid #4f525a;
         border-radius: 6px;
-/*       -webkit-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
+        overflow: hidden;
+    /* -webkit-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
         -moz-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
-        box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;*/
+        box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset; 
+        */
 }
 @-moz-document url-prefix() {
 .playlist {
@@ -104,14 +107,6 @@ body, all {
         color: #fff;
         background: #585c64;
 }
-/*.active::after {
-    float: right;
-    font: var(--fa-font-solid);
-    content: "\f04b";
-    size: 14px;
-    color: #99CCFF;
-    padding: 3px 10px;
-}*/
 .playpause-track, .prev-track, .next-track {
         padding: 5px;
 }
