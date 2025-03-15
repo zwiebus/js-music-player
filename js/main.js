@@ -1,12 +1,12 @@
-    let track_name = document.querySelector(".track-name");
-    let tracknumber = document.querySelector(".tracknumber");
-    let playpause_btn = document.querySelector(".playpause-track");
-    let next_btn = document.querySelector(".next-track");
-    let prev_btn = document.querySelector(".prev-track");
-    let seek_slider = document.querySelector(".seek_slider");
-    let volume_slider = document.querySelector(".volume_slider");
-    let curr_time = document.querySelector(".current-time");
-    let total_duration = document.querySelector(".total-duration");
+    const track_name = document.querySelector(".track-name");
+    const tracknumber = document.querySelector(".tracknumber");
+    const playpause_btn = document.querySelector(".playpause-track");
+    const next_btn = document.querySelector(".next-track");
+    const prev_btn = document.querySelector(".prev-track");
+    const seek_slider = document.querySelector(".seek_slider");
+    const volume_slider = document.querySelector(".volume_slider");
+    const curr_time = document.querySelector(".current-time");
+    const total_duration = document.querySelector(".total-duration");
 
     let track_index = 0;
     let isPlaying = false;
@@ -122,7 +122,7 @@
 
     // show/hide playlist or trackdetails
     function showHide(id, styleDisplay, displayInline) {
-     var node = document.getElementById(id);
+     const node = document.getElementById(id);
       if(node) {
        if(styleDisplay) {
         node.style.display = styleDisplay;
@@ -136,8 +136,8 @@
      }
     }
    // show volume_slider value
-   let slider = document.getElementById("volumeValue");
-   let output = document.getElementById("volume_value");
+   const slider = document.getElementById("volumeValue");
+   const output = document.getElementById("volume_value");
     output.innerText = slider.value  + " %";
      slider.oninput = function() {
      output.innerText = this.value + " %";
@@ -148,7 +148,7 @@
      for (let i = 0; i < tracklist.length; i++) {
        tracklist[i].classList.remove("active");
        }
-   let trackactive = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
+     let trackactive = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
        trackactive = track_list[track_index].number;
        curr = document.querySelector('div[data-track="' + trackactive + '"]').classList;
        curr.add("active");
