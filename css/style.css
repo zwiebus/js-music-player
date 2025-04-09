@@ -26,7 +26,8 @@ body{
 }
 .playlist {
         background: #3e3e46;
-        overflow-y: scroll;
+        overflow-y: auto;
+        max-height: 250px;
         margin: 6px;
         margin-bottom: 10px;
         border: 1px solid #4f525a;
