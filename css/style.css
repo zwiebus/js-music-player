@@ -10,7 +10,6 @@ body{
         background-color: #393942;
         margin: 0 auto;
         width: 320px;
-        height: 394px;
         border: 1px solid #4f525a;
         border-radius: 6px;
         overflow: hidden;
@@ -27,10 +26,9 @@ body{
 }
 .playlist {
         background: #3e3e46;
-        height: 250px;
         overflow-y: scroll;
         margin: 6px;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         border: 1px solid #4f525a;
         border-radius: 3px;
         box-sizing: border-box;
