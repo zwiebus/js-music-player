@@ -118,7 +118,7 @@ body{
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        width: 59%;
+        width: 55%;
         height: 6px;
         background: #8a8ba7;
         border-radius: 5px;
@@ -162,7 +162,7 @@ input[type="range"]::-moz-range-thumb {
         margin-bottom: 10px;
 }
 .times .current-time, .times .total-duration {
-        margin: 0 12px;
+        margin: 0 10px;
 }
 .fa-play-circle, .fa-pause-circle, .fa-step-forward, .fa-step-backward {
         font-size: 22px;
