@@ -152,4 +152,7 @@
        trackactive = track_list[track_index].number;
        curr = document.querySelector('div[data-track="' + trackactive + '"]').classList;
        curr.add("active");
+       
+     let el = document.querySelector('.active');
+       el.scrollIntoView(true);
    }
