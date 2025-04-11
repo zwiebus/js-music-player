@@ -4,6 +4,7 @@ body{
 }
 */
 .player {
+        position: relative;
         color: #d8dbe7;
         font-size: 14px;
         font-family: OpenSans;                               
@@ -12,7 +13,7 @@ body{
         width: 320px;
         border: 1px solid #4f525a;
         border-radius: 6px;
-        overflow: hidden;
+        box-sizing: border-box;
     /* -webkit-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
         -moz-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
         box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset; 
@@ -27,6 +28,8 @@ body{
 .playlist {
         background: #3e3e46;
         overflow-y: auto;
+        overflow-x: hidden; /* comment out if you don't wish autoscroll for long trackmames */
+        white-space: nowrap; /* comment out if you don't wish autoscroll for long tracknames */
         max-height: 250px;
         margin: 6px;
         border: 1px solid #4f525a;
@@ -87,6 +90,7 @@ body{
         margin-top: 6px;
 }
 .track-number {
+        width: 200%;
         line-height: 20px;
         border-bottom: 1px solid #4f525a;
         padding-left: 4px;
@@ -97,6 +101,14 @@ body{
 }
 .track-number:hover {
         background: #4c4f58;
+}
+/* If you wish to autoscroll the title of a track when its too long for the playlist just add autoscroll to class"track-number" in index.html */
+.autoscroll { 
+        animation: autoscroll 10s 1s linear infinite;
+}
+@keyframes autoscroll {
+        0% {transform: translateX(0);}
+        100% {transform: translateX(-304px);}
 }
 .active {
         color: #fff;
