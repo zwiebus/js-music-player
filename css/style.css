@@ -35,7 +35,7 @@ body{
         border: 1px solid #4f525a;
         border-radius: 3px;
         box-sizing: border-box;
-        outline-offset: -2px
+        outline-offset: -2px;
 }
 .playlist::-webkit-scrollbar {
         width: 8px;
@@ -61,6 +61,11 @@ body{
         color: #fff;
         font-size: 16px;
         margin-top: 6px;
+        height: 30px;
+        text-align: center;
+}
+.small {
+        font-size: 12px;
 }
 .showhide {
         cursor: pointer;
