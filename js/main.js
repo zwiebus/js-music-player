@@ -48,6 +48,7 @@
       updateTimer = setInterval(seekUpdate, 1000);
       curr_track.addEventListener("ended", nextTrack);
       active();
+      smallname();  
     }
     function resetValues() {
       curr_time.textContent = "00:00";
@@ -148,11 +149,21 @@
      for (let i = 0; i < tracklist.length; i++) {
        tracklist[i].classList.remove("active");
        }
-     let trackactive = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
+      let trackactive = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
        trackactive = track_list[track_index].number;
        curr = document.querySelector('div[data-track="' + trackactive + '"]').classList;
        curr.add("active");
-       
-     let el = document.querySelector('.active');
-       el.scrollIntoView(true);
+     // optional  
+      let el = document.querySelector('.active');
+        el.scrollIntoView(true);
+   }
+   function smallname() {
+     const smallname = document.getElementsByClassName("track-name small");
+     for (let i = 0; i < smallname.length; i++) {
+       smallname[i].classList.remove("small");
+       }
+      let  text = document.getElementById("track-name").textContent.length;
+      if(text > 36) {
+       document.querySelector(".track-name").classList.add("small");
+      }
    }
