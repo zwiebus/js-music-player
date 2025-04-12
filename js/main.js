@@ -157,6 +157,7 @@
       let el = document.querySelector('.active');
         el.scrollIntoView(true);
    }
+    // if track-name is too long make it smaller 
    function smallname() {
      const smallname = document.getElementsByClassName("track-name small");
      for (let i = 0; i < smallname.length; i++) {
