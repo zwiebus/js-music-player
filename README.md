@@ -20,4 +20,10 @@ Make sure that the number ' ' is always one less than in tracklist array : 1 = 0
 
 ## Information
 
-This branch is designed as a mimimal version with a dark style and the ability to show playlist and trackdetails.
+This branch is designed as a mimimal version with a dark style.
+
+Additional features: 
+. ability to show playlist and trackdetails
+. minimize track-name if it is too long
+. playlist: highlight current trackname and bring into view
+            autoscroll once trackname if it is too long 
