@@ -109,7 +109,7 @@ body{
    add autoscroll to class"track-number" in index.html
    Optional add small to change font size */
 .autoscroll { 
-        animation: autoscroll 10s 1s linear infinite;
+        animation: autoscroll 10s 1s linear alternate;
 }
 @keyframes autoscroll {
         0% {transform: translateX(0);}
