@@ -29,7 +29,6 @@ body{
         background: #3e3e46;
         overflow-y: auto;
         overflow-x: hidden; /* comment out if you don't wish autoscroll for long trackmames */
-        white-space: nowrap; /* comment out if you don't wish autoscroll for long tracknames */
         max-height: 250px;
         margin: 6px;
         border: 1px solid #4f525a;
@@ -64,9 +63,6 @@ body{
         height: 30px;
         text-align: center;
 }
-.small {
-        font-size: 12px;
-}
 .showhide {
         cursor: pointer;
         color: #eff0f5;
@@ -95,10 +91,12 @@ body{
         margin-top: 6px;
 }
 .track-number {
-        width: 200%;
+        width: 200%; /* set to 100% without autoscroll */
+        white-space: nowrap; /* comment out if you don't wish autoscroll for long tracknames */
         line-height: 20px;
         border-bottom: 1px solid #4f525a;
         padding-left: 4px;
+        box-sizing: border-box;
         cursor: pointer;
 }
 .track-number:last-child {
@@ -107,17 +105,22 @@ body{
 .track-number:hover {
         background: #4c4f58;
 }
-/* If you wish to autoscroll the title of a track when its too long for the playlist just add autoscroll to class"track-number" in index.html */
+/* If you wish to autoscroll the title of a track when its too long for the playlist
+   add autoscroll to class"track-number" in index.html
+   Optional add small to change font size */
 .autoscroll { 
         animation: autoscroll 10s 1s linear infinite;
 }
 @keyframes autoscroll {
         0% {transform: translateX(0);}
-        100% {transform: translateX(-304px);}
+        100% {transform: translateX(-100%);}
 }
 .active {
         color: #fff;
         background: #585c64;
+}
+.small {
+        font-size: 12px;
 }
 .playpause-track, .prev-track, .next-track {
         padding: 5px;
