@@ -24,8 +24,8 @@ This branch is designed as a mimimal version with a dark style.
 
 ## Additional features: 
 <ul>
-<li>ability to show playlist and trackdetails</li>
-<li>minimize track-name if it is too long</li>
-<li>playlist: highlight current trackname and scroll it into view</li>
-<li>playlist: autoscroll trackname once if it is too long </li>
+<li>Ability to show playlist and trackdetails</li>
+<li>Minimize track-name if it's too long</li>
+<li>Playlist: highlight current trackname and scroll it into view</li>
+<li>Optional: autoscroll trackname in playlist once if it's too long </li>
 </ul>
