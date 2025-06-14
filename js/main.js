@@ -1,5 +1,5 @@
     const track_name = document.querySelector(".track-name");
-    const tracknumber = document.querySelector(".tracknumber");
+    const tracknumber = document.querySelector(".track-number");
     const playpause_btn = document.querySelector(".playpause-track");
     const next_btn = document.querySelector(".next-track");
     const prev_btn = document.querySelector(".prev-track");
