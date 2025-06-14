@@ -28,7 +28,7 @@ body{
 .playlist {
         background: #3e3e46;
         overflow-y: auto;
-        overflow-x: hidden; /* comment out if you don't wish autoscroll for long trackmames */
+        /* overflow-x: hidden; /* comment in if you wish autoscroll for long trackmames */
         max-height: 250px;
         margin: 6px;
         border: 1px solid #4f525a;
@@ -91,8 +91,8 @@ body{
         margin-top: 6px;
 }
 .track-number {
-        width: 200%; /* set to 100% without autoscroll */
-        white-space: nowrap; /* comment out if you don't wish autoscroll for long tracknames */
+        width: 100%; /* set to 200% with autoscroll */
+        /*white-space: nowrap; /* comment in if you wish autoscroll for long tracknames */
         line-height: 20px;
         border-bottom: 1px solid #4f525a;
         padding-left: 4px;
