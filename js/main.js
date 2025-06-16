@@ -62,12 +62,10 @@
     function playTrack() {
       curr_track.play();
       isPlaying = true;
-      playpause_btn.innerHTML = '<i class="fa fa-pause-circle"></i>';
     }
     function pauseTrack() {
       curr_track.pause();
       isPlaying = false;
-      playpause_btn.innerHTML = '<i class="fa fa-play-circle"></i>';
     }
     // numbers must be one less than in track_list
     function nextTrack() {
@@ -143,6 +141,22 @@
      slider.oninput = function() {
      output.innerText = this.value + " %";
     }
+// toogle play pause
+$(".playpause-track").on('click', function() {
+  $(this).toggleClass("fa-play-circle fa-pause-circle");
+});
+$(".prev-track").on('click', function() {
+  $(".playpause-track").removeClass("fa-play-circle");
+  $(".playpause-track").addClass("fa-pause-circle");
+});
+$(".next-track").on('click', function() {
+  $(".playpause-track").removeClass("fa-play-circle");
+  $(".playpause-track").addClass("fa-pause-circle");
+});
+$(".track-number").on('click', function() {
+  $(".playpause-track").removeClass("fa-play-circle");
+  $(".playpause-track").addClass("fa-pause-circle");
+});
     // highlight the current track
    function active() {
      const tracklist = document.getElementsByClassName("track-number active");
