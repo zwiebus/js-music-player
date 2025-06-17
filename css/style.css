@@ -163,7 +163,7 @@ input[type="range"]::-moz-range-thumb {
 .volume_slider:hover, .seek_slider:hover {
         opacity: 1.0;
 }
-.fa-volume-down, .fa-volume-up {
+.fa-volume-xmark, .fa-volume-high {
         padding: 10px 5px;
         font-size: 18px;
         min-width: 15px;
