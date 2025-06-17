@@ -145,15 +145,7 @@
 $(".playpause-track").on('click', function() {
   $(this).toggleClass("fa-play-circle fa-pause-circle");
 });
-$(".prev-track").on('click', function() {
-  $(".playpause-track").removeClass("fa-play-circle");
-  $(".playpause-track").addClass("fa-pause-circle");
-});
-$(".next-track").on('click', function() {
-  $(".playpause-track").removeClass("fa-play-circle");
-  $(".playpause-track").addClass("fa-pause-circle");
-});
-$(".track-number").on('click', function() {
+$(".prev-track,.next-track,.track-number").on('click', function() {
   $(".playpause-track").removeClass("fa-play-circle");
   $(".playpause-track").addClass("fa-pause-circle");
 });
