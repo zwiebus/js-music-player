@@ -1,5 +1,6 @@
     const track_name = document.querySelector(".track-name");
     const track_number = document.querySelector(".track-number");
+    const tracknumber = document.querySelector(".tracknumber");
     const playpause_btn = document.querySelector(".playpause-track");
     const next_btn = document.querySelector(".next-track");
     const prev_btn = document.querySelector(".prev-track");
@@ -43,6 +44,8 @@
       curr_track.src = track_list[track_index].path;
       curr_track.load();
       track_name.textContent = track_list[track_index].name;
+      tracknumber.textContent = track_list[track_index].number + '.';
+      if (tracknumber.textContent < 10) {tracknumber.textContent = "0" + tracknumber.textContent;}
       updateTimer = setInterval(seekUpdate, 1000);
       curr_track.addEventListener("ended", nextTrack);
       active();
