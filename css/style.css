@@ -71,7 +71,8 @@ body{
         background: #5a5b64;
         padding: 3px 6px;
         border-radius: 6px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
+        margin-top: -3px;
         -webkit-box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
         -moz-box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
         box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
@@ -88,7 +89,6 @@ body{
 .buttons {
         display: flex;
         justify-content: center;
-        margin-top: 6px;
 }
 .track-number {
         width: 100%; /* set to 200% with autoscroll */
@@ -184,5 +184,5 @@ input[type="range"]::-moz-range-thumb {
         cursor: pointer;
 }
 .playpause-track:hover, .prev-track:hover, .next-track:hover {
-        color: white;
+        color: #fff;
 }
