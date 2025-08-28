@@ -19,13 +19,9 @@ body{
         box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset; 
         */
 }
-@-moz-document url-prefix() {
 .playlist {
         scrollbar-color: #777 #888;
         scrollbar-width: thin;
- }
-}
-.playlist {
         background: #3e3e46;
         overflow-y: auto;
         /* overflow-x: hidden; /* comment in if you wish autoscroll for long trackmames */
@@ -132,7 +128,6 @@ body{
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        width: 55%;
         height: 6px;
         background: #8a8ba7;
         border-radius: 5px;
@@ -141,6 +136,13 @@ body{
         transition: opacity .2s;
         z-index: 120;
 }
+
+.volume_slider {
+        width: 140px;
+}
+.seek_slider {
+        width: 205px;
+
 .volume_slider::-webkit-slider-thumb, .seek_slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         -moz-appearence: none;
@@ -170,13 +172,21 @@ input[type="range"]::-moz-range-thumb {
         max-width: 25px;
 }
 .volumevalue, .tracknumber {
-        width: 50px;
+        width: 40px;
 }
 .times {
         margin-bottom: 10px;
+       /* Prevent line break when displaying total-duration as 'Infinity:NaN' */
+        white-space: nowrap;
+        overflow: hidden;
 }
 .times .current-time, .times .total-duration {
         margin: 0 10px;
+        width: 30px;
+}
+.total-duration {
+        margin-left: 5px;
+        margin-right: 15px;
 }
 .fa-play-circle, .fa-pause-circle, .fa-step-forward, .fa-step-backward {
         font-size: 22px;
@@ -186,3 +196,4 @@ input[type="range"]::-moz-range-thumb {
 .playpause-track:hover, .prev-track:hover, .next-track:hover {
         color: #fff;
 }
+
