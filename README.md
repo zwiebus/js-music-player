@@ -24,8 +24,10 @@ This branch is designed as a mimimal version with a dark style.
 
 ## Additional features: 
 <ul>
+<li>Infinity Audio streams are supported</li>
 <li>Ability to show playlist and trackdetails</li>
 <li>Minimize track-name if it's too long</li>
 <li>Playlist: highlight current trackname and scroll it into view</li>
 <li>Optional: autoscroll trackname in playlist once if it's too long </li>
 </ul>
+
