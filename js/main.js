@@ -89,7 +89,7 @@
         track_index++;
       else track_index = 0;
       loadTrack(track_index);
-      playTrack();                 ;
+      playTrack();                 
     }
     function prevTrack() {
       if (track_index > 0)
@@ -208,3 +208,4 @@ $("#fileInput").on('change', function() {
   $(".playpause-track").removeClass("fa-play-circle");
   $(".playpause-track").addClass("fa-pause-circle");
 });
+
