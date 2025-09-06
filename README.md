@@ -1,13 +1,18 @@
-# minimal-js-music-player
-This is a User Interface of a music player created in HTML, CSS and JavaScript.
+# compact-js-music-player
+This is an HTML, CSS and JavaScript-based music player.
+This compact version has a dark style.
 
 ![Output](/output/html-css.png)
 
 ![Output](/output/html-css1.png)
 
+![Output](/output/html-css2.png)
+
 ## Running the player
 
-The index.html file can be run on any modern browser to run the music player.
+The music player can be run on any modern browser by opening the index.html file.<br>
+The player can easily be integrated into your website — just remember to add the stylesheets and jquery's source (if not present) to the head section!<br>
+Further information is included in the form of comments in the files.
 
 ## Adding more tracks
 
@@ -15,19 +20,20 @@ The tracks are currently being loaded from the tracklist array specified in main
 
 ## Add more tracks to playlist
 
-More tracks can be added by adding a new div class="track-number"  in index.html.
-Make sure that the number ' ' is always one less than in tracklist array : 1 = 0, 2 = 1 etc.
+You can add more tracks by adding a new <i>div class="track-number"</i> in the index.html file.
+Ensure that the number is always one less than the corresponding number in the tracklist array: 1 = 0, 2 = 1, etc.
 
-## Information
-
-This branch is designed as a mimimal version with a dark style.
-
-## Additional features: 
+## Features:
 <ul>
-<li>Infinity Audio streams are supported</li>
-<li>Ability to show playlist and trackdetails</li>
-<li>Minimize track-name if it's too long</li>
-<li>Playlist: highlight current trackname and scroll it into view</li>
-<li>Optional: autoscroll trackname in playlist once if it's too long </li>
+<li>Load audio files with Open File</li>
+<li>Display the cover when hovering over a track in the playlist.</li>
+<li>Ability to display/hide playlist and track details</li>
+<li>Make track name smaller if it's too long</li>
+<li>Playlist: Highlight current track name and scroll it into view</li>
+<li>Optional: Autoscroll track name in playlist once if it's too long</li>
 </ul>
 
+## Planned
+<ul>
+<li>Load playlists with Open File(.pls, .m3u etc)</li>
+</ul>
