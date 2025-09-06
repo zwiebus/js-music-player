@@ -1,3 +1,10 @@
+    // * @package compact-js-music-player
+    // * @author sayantanm19
+    // * @author Zwiebus
+
+    // The original code uses “innerHtml” This is a security risk. Better use “textContent”.
+    // This and some other functions like 'display covers' are better solved with pure HTML/CSS.
+
     const track_name = document.querySelector(".track-name");
     const track_number = document.querySelector(".track-number");
     const tracknumber = document.querySelector(".tracknumber");
@@ -12,29 +19,37 @@
     let track_index = 0;
     let isPlaying = false;
     let updateTimer;
+
     // Create new audio element
     let curr_track = document.createElement('audio');
+        curr_track.setAttribute("id", "player");
+        container.appendChild(curr_track);
+
     let track_list = [
   {
     name: "Night Owl",
     artist: "Broke For Free",
-    image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
     path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3",
     number: "1",
   },
   {
     name: "Enthusiast",
     artist: "Tours",
-    image: "https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
     path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3",
     number: "2",
   },
   {
     name: "Shipping Lanes",
     artist: "Chad Crouch",
-    image: "https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
     path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
     number: "3",
+  },
+  // Internet radio stream
+  {
+    name: "SomaFM - Groove Salad",
+    artist: "Various",
+    path: "https://ice5.somafm.com/groovesalad-256-mp3",
+    number: "4",
   },
  ];
 
@@ -49,7 +64,7 @@
       updateTimer = setInterval(seekUpdate, 1000);
       curr_track.addEventListener("ended", nextTrack);
       active();
-      smallname();  
+      smallName();
     }
     function resetValues() {
       curr_time.textContent = "00:00";
@@ -70,16 +85,16 @@
     }
     // numbers must be one less than in track_list
     function nextTrack() {
-      if (track_index < 2)
+      if (track_index < 3)
         track_index++;
       else track_index = 0;
       loadTrack(track_index);
-      playTrack();
+      playTrack();                 ;
     }
     function prevTrack() {
       if (track_index > 0)
       track_index--;
-      else track_index = 2;
+      else track_index = 3;
       loadTrack(track_index);
       playTrack();
     }
@@ -120,37 +135,31 @@
     // Load the first track in the tracklist
     loadTrack(track_index);
 
-    // show/hide playlist or trackdetails
-    function showHide(id, styleDisplay, displayInline) {
-     const node = document.getElementById(id);
-      if(node) {
-       if(styleDisplay) {
-        node.style.display = styleDisplay;
-       } else {
-         if(node.style.display == 'none') {
-        node.style.display = (displayInline ? 'inline' : 'block');
-       } else {
-        node.style.display = 'none';
-       }
-      }
+    // display/hide playlist, trackdetails
+    function showHidePlaylist() {
+     let x = document.getElementById("playlist");
+      if (x.style.display === "none") {
+      x.style.display = "block";
+      } else {
+       x.style.display = "none";
      }
     }
-   // show volume_slider value
+    function showHideTimes() {
+     let x = document.getElementById("times");
+      if (x.style.display === "none") {
+      x.style.display = "flex";
+      } else {
+       x.style.display = "none";
+     }
+    }
+   // display volume_slider value
    const slider = document.getElementById("volumeValue");
    const output = document.getElementById("volume_value");
     output.innerText = slider.value  + " %";
      slider.oninput = function() {
-     output.innerText = this.value + " %";
-    }
-// toogle play pause
-$(".playpause-track").on('click', function() {
-  $(this).toggleClass("fa-play-circle fa-pause-circle");
-});
-$(".prev-track,.next-track,.track-number").on('click', function() {
-  $(".playpause-track").removeClass("fa-play-circle");
-  $(".playpause-track").addClass("fa-pause-circle");
-});
-    // highlight the current track
+     output.textContent = this.value + " %";
+   }
+   // highlight the current track
    function active() {
      const tracklist = document.getElementsByClassName("track-number active");
      for (let i = 0; i < tracklist.length; i++) {
@@ -160,18 +169,42 @@ $(".prev-track,.next-track,.track-number").on('click', function() {
        trackactive = track_list[track_index].number;
        curr = document.querySelector('div[data-track="' + trackactive + '"]').classList;
        curr.add("active");
-     // optional  
       let el = document.querySelector('.active');
         el.scrollIntoView(true);
    }
-    // if track-name is too long make it smaller 
-   function smallname() {
-     const smallname = document.getElementsByClassName("track-name small");
-     for (let i = 0; i < smallname.length; i++) {
-       smallname[i].classList.remove("small");
+    // if track-name is too long make it smaller
+   function smallName() {
+     const smallName = document.getElementsByClassName("track-name small");
+     for (let i = 0; i < smallName.length; i++) {
+       smallName[i].classList.remove("small");
        }
-      let  text = document.getElementById("track-name").textContent.length;
+      let  text = track_name.textContent.length;
       if(text > 36) {
-       document.querySelector(".track-name").classList.add("small");
+       track_name.classList.add("small");
       }
    }
+    // Load audio files with Open File
+   const fileInput = document.getElementById("fileInput");
+    fileInput.addEventListener("change", event => {
+    const objUrl = URL.createObjectURL(event.target.files[0]);
+     let file = document.getElementById("player").src = objUrl;
+     let fileName = document.getElementById("fileInput").files[0].name;
+     // File names contain characters that do not belong in the title. Clean this up.
+     let title = fileName.replace(/[0-9]/g,'').replace(/[.-]/,'').replaceAll('_',' ').replace(/\.[^.]*$/,'').replace('flac','');
+     tracknumber.textContent = 'File';
+     track_name.textContent = title;
+     smallName();
+     playTrack();
+   });
+   // jquery toogle play pause
+$(".playpause-track").on('click', function() {
+  $(this).toggleClass("fa-play-circle fa-pause-circle");
+});
+$(".prev-track,.next-track,.track-number").on('click', function() {
+  $(".playpause-track").removeClass("fa-play-circle");
+  $(".playpause-track").addClass("fa-pause-circle");
+});
+$("#fileInput").on('change', function() {
+  $(".playpause-track").removeClass("fa-play-circle");
+  $(".playpause-track").addClass("fa-pause-circle");
+});
