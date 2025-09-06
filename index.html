@@ -1,5 +1,5 @@
 <!--
- * @package minimal-js-music-player
+ * @package compact-music-player
  * @author sayantanm19
  * @author Zwiebus
 -->
@@ -14,41 +14,46 @@
 <link rel="stylesheet" href="opensans/opensans.css"/>
   <!-- Load FontAwesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!--/load jquery  /-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
 </head>
 <body>
-  <div class="player">
+<!--/Copy the code from here to '###' to embed the player in your website. /-->
+  <div class="player" id="container">
+     <label for="fileInput"><span class="showhide file">File</span></label>
+     <input type="file" id="fileInput" value="" accept=".mp3,.flac,.wav,.ogg,.aac"/>
       <div class="track-name" id="track-name">Track Name</div>
       <div class="buttons">
-       <a class="showhide" style="margin-right:15px" onclick="showHide('playlist', null);">Playlist</a>
-       <div class="prev-track" onclick="prevTrack()"><i class="fa fa-step-backward"></i></div>
+       <a class="showhide" style="margin-right:15px;" onclick="showHidePlaylist();">Playlist</a>
+       <div class="prev-track fa fa-step-backward" onclick="prevTrack();"></div>
        <div class="playpause-track fa fa-play-circle" onclick="playpauseTrack()"></div>
-       <div class="next-track" onclick="nextTrack()"><i class="fa fa-step-forward"></i></div>
-       <a class="showhide" style="margin-left:15px" onclick="showHide('times', null);">Track</a>
+       <div class="next-track fa fa-step-forward" onclick="nextTrack()"></div>
+       <a class="showhide" style="margin-right:30px;" onclick="showHideTimes();">Track</a>
       </div>
      <div class="details">
       <div class="slider_container">
-       <div class="tracknumber" style="margin-right:-10px;margin-left:14px"></div>
+       <div class="tracknumber" id="tracknumber"></div>
        <i class="fa fa-volume-xmark"></i>
        <input type="range" min="0" max="100" value="85" class="volume_slider" id="volumeValue" onchange="setVolume()">
        <i class="fa fa-volume-high"></i>
-       <div id="volume_value" class="volumevalue" style="margin-left:10px;margin-right:10px"></div>
+       <div id="volume_value" class="volumevalue"></div>
       </div>
      </div>
       <div class="times details" id="times">
        <span class="current-time">00:00</span>
        <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
-       <span class="total-duration">00:00</span>
+       <span class="total-duration" id="total-duration">00:00</span>
       </div>
       <div class="playlist" id="playlist">
-       <div class="track-number" data-track="1" onclick="numberTrack(track_index ,number = '0')">01.Night Owl - Broke For Free</div>
-       <div class="track-number" data-track="2" onclick="numberTrack(track_index ,number = '1')">02.Enthusiast - Tours</div>
-       <div class="track-number" data-track="3" onclick="numberTrack(track_index ,number = '2')">03.Shipping Lanes - Chad Crouch</div>
-        <!-- add more tracks to playlist -->
+       <div class="track-number tooltipimg" data-track="1" onclick="numberTrack(track_index ,number = '0')">01. Night Owl - Broke For Free<span class="cover"><img src="https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg"></span></div>
+       <div class="track-number tooltipimg" data-track="2" onclick="numberTrack(track_index ,number = '1')">02. Enthusiast - Tours<span class="cover"><img src="https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg"></span></div>
+       <div class="track-number tooltipimg" data-track="3" onclick="numberTrack(track_index ,number = '2')">03. Shipping Lanes - Chad Crouch<span class="cover"><img src="https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg"></span></div>
+       <div class="track-number tooltipimg" data-track="4" onclick="numberTrack(track_index ,number = '3')">04. SomaFM - Groove Salad<i class="fa fas fa-radio" style="float:right;margin-top:3px"></i><span class="cover"><img src="https://somafm.com/img3/groovesalad-400.png"></span></div>
+        <!-- add more tracks to playlist: track_index, radio?, cover -->
       </div>
     </div>
   <!-- load main js script -->
  <script src="js/main.js"></script>
+  <!--/###/-->
  </body>
 </html>
-
