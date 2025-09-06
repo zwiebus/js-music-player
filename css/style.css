@@ -1,26 +1,54 @@
-/* 
-body{
+/*
+ * @package compact-js-music-player
+ * @author sayantanm19
+ * @author Zwiebus
+*/
+/* Use body only if the player isn't integrated into your website */
+/*
+body {
         background-color: #393942;
 }
 */
+#fileInput, #player {
+        display: none;
+}
+.file {
+        position: absolute;
+        top: 36px;
+        right: 5px;
+}
+/*Display cover when hover playlist track */
+.tooltipimg .cover {
+        display:none;
+}
+.tooltipimg .cover img {
+        max-height: 80px;
+        max-width: 80px;
+        border-radius: 2px;
+        cursor: pointer;
+        z-index: 999;
+}
+.tooltipimg:hover .cover {
+        display: block;
+        position: absolute;
+        bottom: 1px;
+        right: 7px;
+        z-index:1000;
+}
 .player {
         position: relative;
         color: #d8dbe7;
         font-size: 14px;
-        font-family: OpenSans;                               
+        font-family: OpenSans;
         background-color: #393942;
-        margin: 0 auto;
+        /*margin: 0 auto;*/ /* Use only if the player isn't integrated into your website */
         width: 320px;
         border: 1px solid #4f525a;
         border-radius: 6px;
         box-sizing: border-box;
-    /* -webkit-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
-        -moz-box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset;
-        box-shadow: rgb(255 255 255 / 10%) 0 3px 3px 0 inset; 
-        */
 }
 .playlist {
-        scrollbar-color: #777 #888;
+        scrollbar-color: #777 #888;   /* Firefox */
         scrollbar-width: thin;
         background: #3e3e46;
         overflow-y: auto;
@@ -62,7 +90,6 @@ body{
 .showhide {
         cursor: pointer;
         color: #eff0f5;
-        width: 50px;
         text-align: center;
         background: #5a5b64;
         padding: 3px 6px;
@@ -73,7 +100,7 @@ body{
         -moz-box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
         box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
 }
-.showhide:hover {
+.showhide:hover, .file:hover {
         color: #f3f3f7;
         background: #4e4f58;
 }
@@ -85,6 +112,11 @@ body{
 .buttons {
         display: flex;
         justify-content: center;
+}
+.playpause-track, .prev-track, .next-track {
+        opacity: 0.8;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
 }
 .track-number {
         width: 100%; /* set to 200% with autoscroll */
@@ -102,9 +134,9 @@ body{
         background: #4c4f58;
 }
 /* If you wish to autoscroll the title of a track when its too long for the playlist
-   add autoscroll to class"track-number" in index.html
-   Optional add small to change font size */
-.autoscroll { 
+   add 'autoscroll' to class"track-number" in index.html
+   Optional add 'small' to change font size */
+.autoscroll {
         animation: autoscroll 10s 1s linear alternate;
 }
 @keyframes autoscroll {
@@ -136,33 +168,33 @@ body{
         transition: opacity .2s;
         z-index: 120;
 }
-
 .volume_slider {
         width: 140px;
 }
 .seek_slider {
-        width: 205px;
-
+        width: 195px;
+}
 .volume_slider::-webkit-slider-thumb, .seek_slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         -moz-appearence: none;
         appearance: none;
         width: 12px;
         height: 20px;
-        background: white;
+        background: #a1d4ff;
+        color:#7fb2ff;
         cursor: pointer;
         border: 1px solid #000;
         border-radius: 30%;
 }
-input[type="range"]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {  /* Firefox  */
         width: 11px;
         height: 19px;
-        background: white;
+        background: #a1d4ff;
         cursor: pointer;
         border: 1px solid #000;
         border-radius: 30%;
 }
-.volume_slider:hover, .seek_slider:hover {
+.playpause-track:hover, .prev-track:hover, .next-track:hover, .volume_slider:hover, .seek_slider:hover {
         opacity: 1.0;
 }
 .fa-volume-xmark, .fa-volume-high {
@@ -174,13 +206,20 @@ input[type="range"]::-moz-range-thumb {
 .volumevalue, .tracknumber {
         width: 40px;
 }
+.tracknumber {
+        margin-right: -15px;
+        margin-left: 14px
+}
+.volumevalue {
+        margin :0 10px;
+}
 .times {
         margin-bottom: 10px;
-       /* Prevent line break when displaying total-duration as 'Infinity:NaN' */
+       /* Prevent line break when displaying total-duration as 'NaN' */
         white-space: nowrap;
         overflow: hidden;
 }
-.times .current-time, .times .total-duration {
+.current-time, .total-duration {
         margin: 0 10px;
         width: 30px;
 }
@@ -193,7 +232,6 @@ input[type="range"]::-moz-range-thumb {
         padding: 0 14px;
         cursor: pointer;
 }
-.playpause-track:hover, .prev-track:hover, .next-track:hover {
-        color: #fff;
+.fa {
+        color: #a1d4ff;
 }
-
