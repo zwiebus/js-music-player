@@ -20,6 +20,7 @@
     // Create new audio element
     let curr_track = document.createElement('audio');
         curr_track.setAttribute("id", "player");
+        curr_track.setAttribute("type", "audio/mpeg");
         container.appendChild(curr_track);
 
     let track_list = [
@@ -229,3 +230,4 @@ $(".closeerror").on('click',function() {
 setTimeout(function() {  // to do: for what reasons?  this sometimes doesn't work
   $('.error, .closeerror').delay(10000).fadeOut('slow');
 });
+
