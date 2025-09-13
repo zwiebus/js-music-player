@@ -1,0 +1,34 @@
+<!--
+ * @package compact-music-player
+ * @author sayantanm19
+ * @author Zwiebus
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css"/>
+  <title>Open Compact Audio Player</title>
+  <script type="text/javascript">
+function playerOpen(url,width,height,options,name) {
+  var isChromium = window.chrome,
+  isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
+  if(isChromium !== null && isOpera == true){
+   width = width ? width : 360;
+   height = height ? height : 360;
+   options = options ? options : 'resizable=no,toolbar=0,menuebar=0,location=no,status=no';
+   name = name ? name : 'Audioplayer';
+   window.open(url,name,'screenX='+(screen.width-width)/2+',screenY='+(screen.height-height)/2+',width='+width+',height='+height+','+options );
+  } else {
+   width = width ? width : 340;
+   height = height ? height : 340;
+   options = options ? options : 'resizable=no,toolbar=0,menuebar=0,location=no,status=no';
+   name = name ? name : 'Audioplayer';
+   window.open(url,name,'screenX='+(screen.width-width)/2+',screenY='+(screen.height-height)/2+',width='+width+',height='+height+','+options )
+  }
+};
+  </script>
+</head>
+<body>
+<a class="showhide" href="index.html" onclick="playerOpen(this.href);this.blur();return false;" target="_blank" rel="noopener" title="">Open Player in a small new window</a>
+</body>
