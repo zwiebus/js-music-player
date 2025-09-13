@@ -23,7 +23,7 @@ The tracks are currently being loaded from the tracklist array specified in main
 You can add more tracks by adding a new <i>div class="track-number"</i> in the index.html file.
 Ensure that the number is always one less than the corresponding number in the tracklist array: 1 = 0, 2 = 1, etc.
 
-## Features:
+## Features
 <ul>
 <li>Load audio files with Open File</li>
 <li>Display it's cover when hovering over a track in the playlist</li>
@@ -38,3 +38,4 @@ Ensure that the number is always one less than the corresponding number in the t
 <ul>
 <li>Load playlists with Open File(.pls, .m3u etc)</li>
 </ul>
+
