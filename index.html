@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Minimal Audio Player</title>
+<title>Compact Audio Player</title>
   <!-- Load the custom CSS style file -->
 <link rel="stylesheet" href="css/style.css"/>
   <!-- Load font family OpenSans -->
@@ -15,18 +15,21 @@
   <!-- Load FontAwesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <!--/load jquery  /-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--/<script src="js/playlistparser.js"></script>   /-->
 </head>
 <body>
 <!--/Copy the code from here to '###' to embed the player in your website. /-->
   <div class="player" id="container">
      <label for="fileInput"><span class="showhide file">File</span></label>
      <input type="file" id="fileInput" value="" accept=".mp3,.flac,.wav,.ogg,.aac"/>
+     <div class="error" id="error" style="display:none;"></div>
+      <span class="closeerror" id="closeerror" style="display:none;"><i class="fas fa-xmark"></i></span>
       <div class="track-name" id="track-name">Track Name</div>
       <div class="buttons">
        <a class="showhide" style="margin-right:15px;" onclick="showHidePlaylist();">Playlist</a>
        <div class="prev-track fa fa-step-backward" onclick="prevTrack();"></div>
-       <div class="playpause-track fa fa-play-circle" onclick="playpauseTrack()"></div>
+       <div class="playpause-track fa fa-play-circle" id="playpause" onclick="playpauseTrack()"></div>
        <div class="next-track fa fa-step-forward" onclick="nextTrack()"></div>
        <a class="showhide" style="margin-right:30px;" onclick="showHideTimes();">Track</a>
       </div>
