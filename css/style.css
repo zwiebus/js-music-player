@@ -4,18 +4,48 @@
  * @author Zwiebus
 */
 /* Use body only if the player isn't integrated into your website */
-/*
+
 body {
         background-color: #393942;
 }
-*/
+
 #fileInput, #player {
         display: none;
 }
 .file {
         position: absolute;
-        top: 36px;
+        top: 44px;
         right: 5px;
+}
+.error {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-size: 13px;
+        width: 287px;
+        padding: 10px;
+        color: #f99090;
+        text-align: left;
+        background: #393942;
+        border: 1px solid #4f525a;
+        border-radius: 3px;
+        z-index: 990;
+}
+.closeerror {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        background: #393942;
+        padding: 0 5px;
+        border: 1px solid #4f525a;
+        border-radius: 5px;
+        z-index: 1000;
+        cursor: pointer;
+}
+.closeerror:hover {
+        background: #41414b;
 }
 /*Display cover when hover playlist track */
 .tooltipimg .cover {
@@ -41,7 +71,7 @@ body {
         font-size: 14px;
         font-family: OpenSans;
         background-color: #393942;
-        /*margin: 0 auto;*/ /* Use only if the player isn't integrated into your website */
+        margin: 0 auto; /* Use only if the player isn't integrated into your website */
         width: 320px;
         border: 1px solid #4f525a;
         border-radius: 6px;
@@ -83,8 +113,8 @@ body {
 .track-name {
         color: #fff;
         font-size: 16px;
-        margin-top: 6px;
-        height: 30px;
+        margin-top: 5px;
+        height: 38px;
         text-align: center;
 }
 .showhide {
@@ -231,6 +261,10 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         font-size: 22px;
         padding: 0 14px;
         cursor: pointer;
+}
+.fa-xmark {
+        font-size: 18px;
+        margin-top: 2px;
 }
 .fa {
         color: #a1d4ff;
