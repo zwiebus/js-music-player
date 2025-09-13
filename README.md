@@ -1,6 +1,6 @@
 # compact-js-music-player
 This is an HTML, CSS and JavaScript-based music player.
-This compact version has a dark style.
+It's a dark styled compact version.
 
 ![Output](/output/html-css.png)
 
@@ -10,8 +10,8 @@ This compact version has a dark style.
 
 ## Running the player
 
-The music player can be run on any modern browser by opening the index.html file.<br>
-The player can easily be integrated into your website — just remember to add the stylesheets and jquery's source (if not present) to the head section!<br>
+The music player can be run on any modern browser by opening the index.html file.
+The player can easily be integrated into your website — just remember to add the stylesheets and jquery's source (if not present) to the head section!
 Further information is included in the form of comments in the files.
 
 ## Adding more tracks
@@ -26,7 +26,8 @@ Ensure that the number is always one less than the corresponding number in the t
 ## Features:
 <ul>
 <li>Load audio files with Open File</li>
-<li>Display the cover when hovering over a track in the playlist.</li>
+<li>Display it's cover when hovering over a track in the playlist</li>
+<li>Display an error message when an audio file can not be loaded</li>
 <li>Ability to display/hide playlist and track details</li>
 <li>Make track name smaller if it's too long</li>
 <li>Playlist: Highlight current track name and scroll it into view</li>
