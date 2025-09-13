@@ -2,19 +2,16 @@
     // * @author sayantanm19
     // * @author Zwiebus
 
-    // The original code uses “innerHtml” This is a security risk. Better use “textContent”.
-    // This and some other functions like 'display covers' are better solved with pure HTML/CSS.
-
     const track_name = document.querySelector(".track-name");
     const track_number = document.querySelector(".track-number");
     const tracknumber = document.querySelector(".tracknumber");
-    const playpause_btn = document.querySelector(".playpause-track");
     const next_btn = document.querySelector(".next-track");
     const prev_btn = document.querySelector(".prev-track");
     const seek_slider = document.querySelector(".seek_slider");
     const volume_slider = document.querySelector(".volume_slider");
     const curr_time = document.querySelector(".current-time");
     const total_duration = document.querySelector(".total-duration");
+    // const track_artist = document.querySelector(".track-artist");
 
     let track_index = 0;
     let isPlaying = false;
@@ -89,7 +86,7 @@
         track_index++;
       else track_index = 0;
       loadTrack(track_index);
-      playTrack();                 
+      playTrack();
     }
     function prevTrack() {
       if (track_index > 0)
@@ -152,6 +149,7 @@
        x.style.display = "none";
      }
     }
+
    // display volume_slider value
    const slider = document.getElementById("volumeValue");
    const output = document.getElementById("volume_value");
@@ -159,6 +157,7 @@
      slider.oninput = function() {
      output.textContent = this.value + " %";
    }
+
    // highlight the current track
    function active() {
      const tracklist = document.getElementsByClassName("track-number active");
@@ -172,6 +171,7 @@
       let el = document.querySelector('.active');
         el.scrollIntoView(true);
    }
+
     // if track-name is too long make it smaller
    function smallName() {
      const smallName = document.getElementsByClassName("track-name small");
@@ -183,29 +183,49 @@
        track_name.classList.add("small");
       }
    }
+
     // Load audio files with Open File
    const fileInput = document.getElementById("fileInput");
     fileInput.addEventListener("change", event => {
     const objUrl = URL.createObjectURL(event.target.files[0]);
      let file = document.getElementById("player").src = objUrl;
      let fileName = document.getElementById("fileInput").files[0].name;
-     // File names contain characters that do not belong in the title. Clean this up.
-     let title = fileName.replace(/[0-9]/g,'').replace(/[.-]/,'').replaceAll('_',' ').replace(/\.[^.]*$/,'').replace('flac','');
-     tracknumber.textContent = 'File';
+     // File names often contain characters that do not belong in the title. Clean these and the file extension up.
+     let title = fileName.replace(/^[0-9. -]+/,'').replaceAll('_',' ').replace(/\.[^.]*$/,'').replace('flac','');
      track_name.textContent = title;
+     tracknumber.innerText = 'File';
      smallName();
-     playTrack();
+     playTrack(file);
+     $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
    });
-   // jquery toogle play pause
+
+    // Display audio error message
+   const audio = document.getElementById('player');
+   audio.addEventListener('error', function() {
+    const error = audio.error;
+    if (error) {
+     message = document.getElementById("error");
+     closemessage = document.getElementById("closeerror");
+     message.style.display = 'block';
+     closemessage.style.display = 'block';
+     message.innerText = 'An error occurred while loading the audio';
+     $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
+    }
+     loadTrack(track_index); // Fallback to current track
+   });
+
+  // toogle play pause
 $(".playpause-track").on('click', function() {
   $(this).toggleClass("fa-play-circle fa-pause-circle");
 });
 $(".prev-track,.next-track,.track-number").on('click', function() {
-  $(".playpause-track").removeClass("fa-play-circle");
-  $(".playpause-track").addClass("fa-pause-circle");
-});
-$("#fileInput").on('change', function() {
-  $(".playpause-track").removeClass("fa-play-circle");
-  $(".playpause-track").addClass("fa-pause-circle");
+  $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
 });
 
+  // close error message or wait 10 seconds for fade out
+$(".closeerror").on('click',function() {
+  $(".error,.closeerror").css('display','none');
+});
+setTimeout(function() {  // to do: for what reasons?  this sometimes doesn't work
+  $('.error, .closeerror').delay(10000).fadeOut('slow');
+});
