@@ -211,6 +211,7 @@
      closemessage.style.display = 'block';
      message.innerText = 'An error occurred while loading the audio';
      $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
+     closeError();
     }
      loadTrack(track_index); // Fallback to current track
    });
@@ -227,7 +228,10 @@ $(".prev-track,.next-track,.track-number").on('click', function() {
 $(".closeerror").on('click',function() {
   $(".error,.closeerror").css('display','none');
 });
-setTimeout(function() {  // to do: for what reasons?  this sometimes doesn't work
+function closeError() {
+ setTimeout(function() {
   $('.error, .closeerror').delay(10000).fadeOut('slow');
-});
+ });
+}
+
 
