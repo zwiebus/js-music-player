@@ -187,18 +187,26 @@
 
     // Load audio files with Open File
    const fileInput = document.getElementById("fileInput");
-    fileInput.addEventListener("change", event => {
-    const objUrl = URL.createObjectURL(event.target.files[0]);
-     let file = document.getElementById("player").src = objUrl;
+    files = fileInput.files;
+    fileInput.addEventListener("change", function() {
+    const url = URL.createObjectURL(files[0]);
+     let file = document.getElementById("player").src = url;
      let fileName = document.getElementById("fileInput").files[0].name;
      // File names often contain characters that do not belong in the title. Clean these and the file extension up.
      let title = fileName.replace(/^[0-9. -]+/,'').replaceAll('_',' ').replace(/\.[^.]*$/,'').replace('flac','');
      track_name.textContent = title;
      tracknumber.innerText = 'File';
      smallName();
-     playTrack(file);
+     playTrack();
+     // nextFile();
      $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
    });
+
+   function nextFile(){
+     player.addEventListener('ended', function() {
+        // to do 
+     });
+   }
 
     // Display audio error message
    const audio = document.getElementById('player');
@@ -214,6 +222,7 @@
      closeError();
     }
      loadTrack(track_index); // Fallback to current track
+     pauseTrack();  
    });
 
   // toogle play pause
@@ -233,5 +242,6 @@ function closeError() {
   $('.error, .closeerror').delay(10000).fadeOut('slow');
  });
 }
+
 
 
