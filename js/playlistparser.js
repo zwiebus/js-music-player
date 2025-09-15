@@ -29,7 +29,7 @@ window.PlaylistParser = {
         // check if playlist type is given
         let playlist = [];
         if (this.playlistType == 'm3u' || 'audio/mpegurl') {
-            playlist = this.playlistFile.replace(/^.*#.*$|#EXTM3U|#EXTINF:/mg, '').split('\n');
+           // to do 
         } else if (this.playlistType == 'pls' || this.playlistType == 'audio/x-scpls') {
             // to do
         } else if (this.playlistType == 'json' || this.playlistType == 'application/json') {
@@ -51,4 +51,5 @@ window.PlaylistParser = {
         return outputArray;
     }
 };
+
 }
