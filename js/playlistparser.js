@@ -14,12 +14,18 @@ window.PlaylistParser = {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', this.playlistFileGET, true);
             xhr.responseType = 'text';
-            if (xhr.status = 200) {
-                this.playlistFile = xhr.response;
-                this.parse();
-            } else {
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    this.playlistFile = xhr.response;
+                    this.parse();
+                } else {
+                    throw new Error('Error reading the playlist file');
+                }
+            };
+            xhr.onerror = () => {
                 throw new Error('Error reading the playlist file');
-            }
+            };
+            xhr.send();
         } else{
             throw new Error('No playlist file provided');
         }
@@ -28,12 +34,36 @@ window.PlaylistParser = {
     parse: function() {
         // check if playlist type is given
         let playlist = [];
-        if (this.playlistType == 'm3u' || 'audio/mpegurl') {
-           // to do 
+        if (this.playlistType == 'm3u' || this.playlistType == 'audio/mpegurl') {
+            // Parse M3U: ignore lines starting with #, collect others as file paths
+            const lines = this.playlistFile.split('\n');
+            for (let line of lines) {
+                line = line.trim();
+                if (line && !line.startsWith('#')) {
+                    playlist.push(line);
+                }
+            }
         } else if (this.playlistType == 'pls' || this.playlistType == 'audio/x-scpls') {
-            // to do
+            // Parse PLS: extract lines like File1=...
+            const lines = this.playlistFile.split('\n');
+            for (let line of lines) {
+                const match = line.match(/^File\d+=(.*)$/i);
+                if (match) {
+                    playlist.push(match[1].trim());
+                }
+            }
         } else if (this.playlistType == 'json' || this.playlistType == 'application/json') {
-            // to do
+            // Parse JSON: expect an array or an object with a playlist property
+            try {
+                let data = JSON.parse(this.playlistFile);
+                if (Array.isArray(data)) {
+                    playlist = data;
+                } else if (Array.isArray(data.playlist)) {
+                    playlist = data.playlist;
+                }
+            } catch (e) {
+                throw new Error('Invalid JSON playlist file');
+            }
         } else {
             throw new Error('No valid playlist file provided, valid formats are m3u pls json or their valid mime types');
         }
@@ -43,7 +73,13 @@ window.PlaylistParser = {
         for (var i = 0; i < playlist.length; i++) {
             if (playlist[i]) {
                 // check if file name has .mp3, .ogg, .aac; .flac or .wav before adding the playlist array
-                if(playlist[i].indexOf('.mp3') !== -1 || playlist[i].indexOf('.wav') !== -1 || playlist[i].indexOf('.ogg') !== -1 || playlist[i].indexOf('.aac') !== -1 || playlist[i].indexOf('.flac') !== -1) {
+                if(
+                    playlist[i].indexOf('.mp3') !== -1 || 
+                    playlist[i].indexOf('.wav') !== -1 || 
+                    playlist[i].indexOf('.ogg') !== -1 || 
+                    playlist[i].indexOf('.aac') !== -1 || 
+                    playlist[i].indexOf('.flac') !== -1
+                ){
                     outputArray.push(playlist[i]);
                 }
             }
