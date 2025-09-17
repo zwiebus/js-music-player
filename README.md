@@ -37,8 +37,9 @@ Ensure that the number is always one less than the corresponding number in the t
 
 ## Planned
 <ul>
-<li>Load multiple files(play next file after "ended") and playlists(.pls, .m3u etc) with Open File</li>
+<li>Load playlists(.pls, .m3u etc) with Open File</li>
 </ul>
+
 
 
 
