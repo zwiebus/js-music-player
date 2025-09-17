@@ -22,7 +22,7 @@
 <!--/Copy the code from here to '###' to embed the player in your website. /-->
   <div class="player" id="container">
      <label for="fileInput"><span class="showhide file">File</span></label>
-     <input type="file" id="fileInput" value="" accept=".mp3,.flac,.wav,.ogg,.aac"/>
+     <input type="file" id="fileInput" onchange="loadFile();" accept=".mp3,.flac,.wav,.ogg,.aac" multiple/> 
      <div class="error" id="error" style="display:none;"></div>
       <span class="closeerror" id="closeerror" style="display:none;"><i class="fas fa-xmark"></i></span>
       <div class="track-name" id="track-name">Track Name</div>
@@ -60,3 +60,4 @@
   <!--/###/-->
  </body>
 </html>
+
