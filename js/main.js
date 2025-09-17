@@ -11,7 +11,7 @@
     const volume_slider = document.querySelector(".volume_slider");
     const curr_time = document.querySelector(".current-time");
     const total_duration = document.querySelector(".total-duration");
-    // const track_artist = document.querySelector(".track-artist");
+    //const track_artist = document.querySelector(".track-artist");
 
     let track_index = 0;
     let isPlaying = false;
@@ -57,6 +57,7 @@
       curr_track.src = track_list[track_index].path;
       curr_track.load();
       track_name.textContent = track_list[track_index].name;
+      //track_artist.textContent = track_list[track_index].artist;
       tracknumber.textContent = track_list[track_index].number + '.';
       if (tracknumber.textContent < 10) {tracknumber.textContent = "0" + tracknumber.textContent;}
       updateTimer = setInterval(seekUpdate, 1000);
@@ -157,7 +158,7 @@
     output.innerText = slider.value  + " %";
      slider.oninput = function() {
      output.textContent = this.value + " %";
-   }
+     }
 
    // highlight the current track
    function active() {
@@ -186,26 +187,64 @@
    }
 
     // Load audio files with Open File
+  function loadFile() {
+   let files = document.getElementById("fileInput");
+   files = [...fileInput.files];
+   let len = files.length;
+    if(len == 1) {
+      player.pause();
+      singleFile();
+     } else {
+      player.pause();
+      multipleFiles();
+    }
+  }
+
+  function singleFile() {
    const fileInput = document.getElementById("fileInput");
-    files = fileInput.files;
-    fileInput.addEventListener("change", function() {
+    let files = fileInput.files;
     const url = URL.createObjectURL(files[0]);
      let file = document.getElementById("player").src = url;
      let fileName = document.getElementById("fileInput").files[0].name;
      // File names often contain characters that do not belong in the title. Clean these and the file extension up.
-     let title = fileName.replace(/^[0-9. -]+/,'').replaceAll('_',' ').replace(/\.[^.]*$/,'').replace('flac','');
+     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'').replace('flac','');
      track_name.textContent = title;
      tracknumber.innerText = 'File';
      smallName();
-     playTrack();
-     // nextFile();
-     $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
-   });
+     playTrack(file);
+     removeClass();
+  }
 
-   function nextFile(){
-     player.addEventListener('ended', function() {
-        // to do 
-     });
+   function multipleFiles() {
+      let _next = 0;
+      files = fileInput.files;
+      lens = files.length;
+      if(lens){
+       nextFile(_next);
+      }
+     player.addEventListener("ended", function(){
+      _next += 1;
+      nextFile(_next);
+      if((lens - 1)==_next){
+       _next = -1;
+      } else {
+       loadTrack(track_index);
+       pauseTrack();
+       $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
+     }
+    });
+   }
+
+   function nextFile(n) {
+     let url = URL.createObjectURL(files[n]);
+     player.setAttribute('src', url);
+     let fileName = document.getElementById("fileInput").files[n].name;
+     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'').replace('flac','');
+     track_name.textContent = title;
+     tracknumber.innerText = 'File';
+     smallName(fileName);
+     player.play();
+     removeClass();
    }
 
     // Display audio error message
@@ -222,7 +261,7 @@
      closeError();
     }
      loadTrack(track_index); // Fallback to current track
-     pauseTrack();  
+     pauseTrack();
    });
 
   // toogle play pause
@@ -232,16 +271,16 @@ $(".playpause-track").on('click', function() {
 $(".prev-track,.next-track,.track-number").on('click', function() {
   $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
 });
-
-  // close error message or wait 10 seconds for fade out
+function removeClass() {
+  $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
+  $(".track-number").removeClass("active");
+}
+  // close error message or wait 8 seconds for fade out
 $(".closeerror").on('click',function() {
   $(".error,.closeerror").css('display','none');
 });
-function closeError() {
+function closeError(){
  setTimeout(function() {
-  $('.error, .closeerror').delay(10000).fadeOut('slow');
+  $('.error, .closeerror').delay(8000).fadeOut('slow');
  });
 }
-
-
-
