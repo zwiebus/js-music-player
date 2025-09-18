@@ -1,8 +1,10 @@
 'use strict';
 
 /* Playlist Parser */
-function playlistparser() {
-window.PlaylistParser = {
+function playlistparser() { 
+  window = document.getElementById("newPlaylist");
+  window.style.display = 'block';
+  window.PlaylistParser = {
     init: function (params) {
         this.params = params;
 
@@ -89,3 +91,4 @@ window.PlaylistParser = {
 };
 
 }
+
