@@ -121,6 +121,7 @@ body {
         cursor: pointer;
         color: #eff0f5;
         text-align: center;
+        text-decoration: none;
         background: #5a5b64;
         padding: 3px 6px;
         border-radius: 6px;
@@ -269,5 +270,6 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
+
 
 
