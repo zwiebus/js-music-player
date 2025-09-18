@@ -227,11 +227,7 @@
       nextFile(_next);
       if((lens - 1)==_next){
        _next = -1;
-      } else {
-       loadTrack(track_index);
-       pauseTrack();
-       $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
-     }
+      } 
     });
    }
 
@@ -253,10 +249,7 @@
     const error = audio.error;
     if (error) {
      message = document.getElementById("error");
-     closemessage = document.getElementById("closeerror");
      message.style.display = 'block';
-     closemessage.style.display = 'block';
-     message.innerText = 'An error occurred while loading the audio';
      $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
      closeError();
     }
@@ -277,10 +270,11 @@ function removeClass() {
 }
   // close error message or wait 8 seconds for fade out
 $(".closeerror").on('click',function() {
-  $(".error,.closeerror").css('display','none');
+  $(".error").css('display','none');
 });
 function closeError(){
  setTimeout(function() {
-  $('.error, .closeerror').delay(8000).fadeOut('slow');
+  $('.error').delay(8000).fadeOut('slow');
  });
 }
+
