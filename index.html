@@ -14,19 +14,20 @@
 <link rel="stylesheet" href="opensans/opensans.css"/>
   <!-- Load FontAwesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <!--/load jquery  /-->
+  <!-- load jquery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <!--/<script src="js/playlistparser.js"></script>   /-->
+  <!-- <script src="js/playlistparser.js"></script> -->
 </head>
 <body>
-<!--/Copy the code from here to '###' to embed the player in your website. /-->
+<!-- Copy the code from here to '###' to embed the player in your website. -->
   <div class="player" id="container">
      <label for="fileInput"><span class="showhide file">File</span></label>
-     <input type="file" id="fileInput" onchange="loadFile();" accept=".mp3,.flac,.wav,.ogg,.aac" multiple/> 
+     <input type="file" id="fileInput" onchange="loadFile();" accept=".mp3,.flac,.wav,.ogg,.aac" multiple/>
       <div class="error" id="error" style="display:none;">An error occurred while loading the audio
        <a class="closeerror" id="closeerror"><i class="fas fa-xmark"></i></a>
       </div>
       <div class="track-name" id="track-name">Track Name</div>
+      <!-- <div class="track-artist" id="track-name"></div> -->
       <div class="buttons">
        <a class="showhide" style="margin-right:15px;" onclick="showHidePlaylist();">Playlist</a>
        <div class="prev-track fa fa-step-backward" onclick="prevTrack();"></div>
@@ -48,6 +49,9 @@
        <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
        <span class="total-duration" id="total-duration">00:00</span>
       </div>
+      <div class="newplaylist" id="newplaylist" style="display:none;">01. song<br>02. song
+       <a class="closepls" id="closepls"><i class="fas fa-xmark"></i></a>
+      </div>
       <div class="playlist" id="playlist">
        <div class="track-number tooltipimg" data-track="1" onclick="numberTrack(track_index ,number = '0')">01. Night Owl - Broke For Free<span class="cover"><img src="https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg"></span></div>
        <div class="track-number tooltipimg" data-track="2" onclick="numberTrack(track_index ,number = '1')">02. Enthusiast - Tours<span class="cover"><img src="https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg"></span></div>
@@ -58,8 +62,6 @@
     </div>
   <!-- load main js script -->
  <script src="js/main.js"></script>
-  <!--/###/-->
+  <!-- ### -->
  </body>
 </html>
-
-
