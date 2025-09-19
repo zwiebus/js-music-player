@@ -14,13 +14,13 @@ body {
 }
 .file {
         position: absolute;
-        top: 44px;
+        top: 43px;
         right: 5px;
 }
 .error {
         position: absolute;
         top: 5px;
-        right: 5px;
+        left: 5px;
         font-size: 13px;
         width: 287px;
         padding: 10px;
@@ -31,10 +31,11 @@ body {
         border-radius: 3px;
         z-index: 990;
 }
-.closeerror {
+.closeerror, .closepls {
         position: absolute;
         top: 7px;
         right: 5px;
+        color: #f99090;
         font-size: 16px;
         font-weight: bold;
         background: #393942;
@@ -44,8 +45,11 @@ body {
         z-index: 1000;
         cursor: pointer;
 }
-.closeerror:hover {
+.closeerror:hover. .closepls:hover {
         background: #41414b;
+}
+.closepls {
+        top: 5px;
 }
 /*Display cover when hover playlist track */
 .tooltipimg .cover {
@@ -77,13 +81,21 @@ body {
         border-radius: 6px;
         box-sizing: border-box;
 }
-.playlist {
+.newplaylist {
+        position: absolute;
+        top: 132px;
+        left: 0;
+        padding: 2px 4px;
+        z-index: 900;
+}
+.playlist, .newplaylist {
         scrollbar-color: #777 #888;   /* Firefox */
         scrollbar-width: thin;
         background: #3e3e46;
         overflow-y: auto;
         /* overflow-x: hidden; /* comment in if you wish autoscroll for long trackmames */
         max-height: 250px;
+        width: 307px;
         margin: 6px;
         border: 1px solid #4f525a;
         border-radius: 3px;
@@ -114,6 +126,7 @@ body {
         color: #fff;
         font-size: 16px;
         margin-top: 5px;
+        padding: 0 4px;
         height: 38px;
         text-align: center;
 }
@@ -154,7 +167,7 @@ body {
         /*white-space: nowrap; /* comment in if you wish autoscroll for long tracknames */
         line-height: 20px;
         border-bottom: 1px solid #4f525a;
-        padding-left: 4px;
+        padding: 0 4px;
         box-sizing: border-box;
         cursor: pointer;
 }
@@ -270,6 +283,3 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
-
-
-
