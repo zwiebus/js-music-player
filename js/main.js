@@ -17,7 +17,7 @@
     let isPlaying = false;
     let updateTimer;
 
-    // Create new audio element
+   // Create new audio element
     let curr_track = document.createElement('audio');
         curr_track.setAttribute("id", "player");
         curr_track.setAttribute("type", "audio/mpeg");
@@ -82,7 +82,7 @@
       curr_track.pause();
       isPlaying = false;
     }
-    // numbers must be one less than in track_list
+   // numbers must be one less than in track_list
     function nextTrack() {
       if (track_index < 3)
         track_index++;
@@ -131,10 +131,10 @@
         total_duration.textContent = durationMinutes + ":" + durationSeconds;
       }
     }
-    // Load the first track in the tracklist
+   // Load the first track in the tracklist
     loadTrack(track_index);
 
-    // display/hide playlist, trackdetails
+   // display/hide playlist, trackdetails
     function showHidePlaylist() {
      let x = document.getElementById("playlist");
       if (x.style.display === "none") {
@@ -152,7 +152,7 @@
      }
     }
 
-   // display volume_slider value
+  // display volume_slider value
    const slider = document.getElementById("volumeValue");
    const output = document.getElementById("volume_value");
     output.innerText = slider.value  + " %";
@@ -160,7 +160,7 @@
      output.textContent = this.value + " %";
      }
 
-   // highlight the current track
+  // highlight the current track
    function active() {
      const tracklist = document.getElementsByClassName("track-number active");
      for (let i = 0; i < tracklist.length; i++) {
@@ -174,7 +174,7 @@
         el.scrollIntoView(true);
    }
 
-    // if track-name is too long make it smaller
+  // if track-name is too long make it smaller
    function smallName() {
      const smallName = document.getElementsByClassName("track-name small");
      for (let i = 0; i < smallName.length; i++) {
@@ -186,56 +186,54 @@
       }
    }
 
-    // Load audio files with Open File
-  function loadFile() {
-   let files = document.getElementById("fileInput");
-   files = [...fileInput.files];
-   let len = files.length;
-    if(len == 1) {
-      player.pause();
+  // Load audio files with Open File
+   function loadFile() {
+     let files = document.getElementById("fileInput");
+     files = [...fileInput.files];
+     let len = files.length;
+     if(len == 1) {
       singleFile();
      } else {
-      player.pause();
       multipleFiles();
-    }
-  }
+     }
+   }
 
-  function singleFile() {
-   const fileInput = document.getElementById("fileInput");
-    let files = fileInput.files;
-    const url = URL.createObjectURL(files[0]);
+   function singleFile() {
+     let files = fileInput.files;
+     let url = URL.createObjectURL(files[0]);
      let file = document.getElementById("player").src = url;
      let fileName = document.getElementById("fileInput").files[0].name;
      // File names often contain characters that do not belong in the title. Clean these and the file extension up.
-     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'').replace('flac','');
+     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
      track_name.textContent = title;
      tracknumber.innerText = 'File';
      smallName();
      playTrack(file);
      removeClass();
-  }
+   }
 
    function multipleFiles() {
-      let _next = 0;
-      files = fileInput.files;
-      lens = files.length;
-      if(lens){
-       nextFile(_next);
-      }
+     let _next = 0;
+     files = fileInput.files;
+     lens = files.length;
+     if(lens){
+      nextFile(_next);
+     }
      player.addEventListener("ended", function(){
       _next += 1;
+      next = -1;
       nextFile(_next);
       if((lens - 1)==_next){
        _next = -1;
-      } 
-    });
+       }
+     });
    }
 
    function nextFile(n) {
      let url = URL.createObjectURL(files[n]);
      player.setAttribute('src', url);
      let fileName = document.getElementById("fileInput").files[n].name;
-     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'').replace('flac','');
+     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
      track_name.textContent = title;
      tracknumber.innerText = 'File';
      smallName(fileName);
@@ -243,7 +241,7 @@
      removeClass();
    }
 
-    // Display audio error message
+  // Display audio error message
    const audio = document.getElementById('player');
    audio.addEventListener('error', function() {
     const error = audio.error;
@@ -257,7 +255,7 @@
      pauseTrack();
    });
 
-  // toogle play pause
+// toogle play pause
 $(".playpause-track").on('click', function() {
   $(this).toggleClass("fa-play-circle fa-pause-circle");
 });
@@ -268,7 +266,7 @@ function removeClass() {
   $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
   $(".track-number").removeClass("active");
 }
-  // close error message or wait 8 seconds for fade out
+// close error message or wait 8 seconds for fade out
 $(".closeerror").on('click',function() {
   $(".error").css('display','none');
 });
@@ -277,4 +275,6 @@ function closeError(){
   $('.error').delay(8000).fadeOut('slow');
  });
 }
-
+$(".closepls").on('click',function() {
+  $(".newplaylist").css('display','none');
+});
