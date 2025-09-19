@@ -1,10 +1,32 @@
+  // load file with get playlist
+/*   function loadFile() {
+     let files = document.getElementById("fileInput");
+     let filename = document.getElementById("fileInput").files[0].name;
+     let ext = /\.[^.]*$/.exec(filename);
+     console.log(ext);
+     if (ext == '.m3u' || ext == '.pls' || ext == '.json') {
+     playlistparser();
+     newpls = document.getElementById("newplaylist");
+     newpls.style.display = 'block';
+     newpls = window[outputArray];
+     } else {
+     files = [...fileInput.files];
+     let len = files.length;
+      if(len == 1) {
+      player.pause();
+      singleFile();
+      } else {
+       player.pause();
+       multipleFiles();
+      }
+     }
+   }*/
+
 'use strict';
 
 /* Playlist Parser */
-function playlistparser() { 
-  window = document.getElementById("newPlaylist");
-  window.style.display = 'block';
-  window.PlaylistParser = {
+function playlistparser() {
+ window.PlaylistParser = {
     init: function (params) {
         this.params = params;
 
@@ -36,7 +58,7 @@ function playlistparser() {
     parse: function() {
         // check if playlist type is given
         let playlist = [];
-        if (this.playlistType == 'm3u' || this.playlistType == 'audio/mpegurl') {
+        if (this.playlistType == '.m3u' || this.playlistType == 'audio/x-mpegurl') {
             // Parse M3U: ignore lines starting with #, collect others as file paths
             const lines = this.playlistFile.split('\n');
             for (let line of lines) {
@@ -45,7 +67,7 @@ function playlistparser() {
                     playlist.push(line);
                 }
             }
-        } else if (this.playlistType == 'pls' || this.playlistType == 'audio/x-scpls') {
+        } else if (this.playlistType == '.pls' || this.playlistType == 'audio/x-scpls') {
             // Parse PLS: extract lines like File1=...
             const lines = this.playlistFile.split('\n');
             for (let line of lines) {
@@ -54,7 +76,7 @@ function playlistparser() {
                     playlist.push(match[1].trim());
                 }
             }
-        } else if (this.playlistType == 'json' || this.playlistType == 'application/json') {
+        } else if (this.playlistType == '.json' || this.playlistType == 'application/json') {
             // Parse JSON: expect an array or an object with a playlist property
             try {
                 let data = JSON.parse(this.playlistFile);
@@ -76,10 +98,10 @@ function playlistparser() {
             if (playlist[i]) {
                 // check if file name has .mp3, .ogg, .aac; .flac or .wav before adding the playlist array
                 if(
-                    playlist[i].indexOf('.mp3') !== -1 || 
-                    playlist[i].indexOf('.wav') !== -1 || 
-                    playlist[i].indexOf('.ogg') !== -1 || 
-                    playlist[i].indexOf('.aac') !== -1 || 
+                    playlist[i].indexOf('.mp3') !== -1 ||
+                    playlist[i].indexOf('.wav') !== -1 ||
+                    playlist[i].indexOf('.ogg') !== -1 ||
+                    playlist[i].indexOf('.aac') !== -1 ||
                     playlist[i].indexOf('.flac') !== -1
                 ){
                     outputArray.push(playlist[i]);
@@ -88,7 +110,5 @@ function playlistparser() {
         }
         return outputArray;
     }
-};
-
+ };
 }
-
