@@ -75,6 +75,8 @@ body {
         font-size: 14px;
         font-family: OpenSans;
         background-color: #393942;
+        /* Choose backgrounds or create your own background image. */
+        /* background: no-repeat center/cover url('js-player-bg3.png');*/
         margin: 0 auto; /* Use only if the player isn't integrated into your website */
         width: 320px;
         border: 1px solid #4f525a;
@@ -283,3 +285,4 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
+
