@@ -4,7 +4,7 @@ It's a dark styled compact version.
 
 ![Output](/output/html-css.png)
 
-![Output](/output/html-css1.png)
+![Output](/output/playerbg.png)
 
 ![Output](/output/html-css2.png)
 
@@ -40,6 +40,7 @@ Ensure that the number is always one less than the corresponding number in the t
 <ul>
 <li>Load playlists(.pls, .m3u etc) with Open File</li>
 </ul>
+
 
 
 
