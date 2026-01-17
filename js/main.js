@@ -256,25 +256,52 @@
    });
 
 // toogle play pause
-$(".playpause-track").on('click', function() {
-  $(this).toggleClass("fa-play-circle fa-pause-circle");
+document.querySelector(".playpause-track").addEventListener('click', function() {
+  this.classList.toggle("fa-play-circle");
+  this.classList.toggle("fa-pause-circle");
 });
-$(".prev-track,.next-track,.track-number").on('click', function() {
-  $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
+
+const clickableElements = document.querySelectorAll(".prev-track, .next-track, .track-number");
+clickableElements.forEach(function(element) {
+  element.addEventListener('click', function() {
+    const playPauseTrack = document.querySelector(".playpause-track");
+    playPauseTrack.classList.remove("fa-play-circle");
+    playPauseTrack.classList.add("fa-pause-circle");
+  });
 });
+
 function removeClass() {
-  $(".playpause-track").removeClass("fa-play-circle").addClass("fa-pause-circle");
-  $(".track-number").removeClass("active");
+  const playPauseTrack = document.querySelector(".playpause-track");
+  playPauseTrack.classList.remove("fa-play-circle");
+  playPauseTrack.classList.add("fa-pause-circle");
+
+  const trackNumbers = document.querySelectorAll(".track-number");
+  trackNumbers.forEach(function(trackNumber) {
+    trackNumber.classList.remove("active");
+  });
 }
-// close error message or wait 8 seconds for fade out
-$(".closeerror").on('click',function() {
-  $(".error").css('display','none');
+
+// Close error message or wait 8 seconds for fade out
+document.querySelector(".closeerror").addEventListener('click', function() {
+  document.querySelector(".error").style.display = 'none';
 });
-function closeError(){
- setTimeout(function() {
-  $('.error').delay(8000).fadeOut('slow');
- });
+
+function closeError() {
+  setTimeout(function() {
+    const errorElement = document.querySelector('.error');
+    if (errorElement) {
+      errorElement.style.transition = 'opacity 0.8s';
+      errorElement.style.opacity = '0';
+
+      // Optionally, you can hide the element completely after fading out
+      setTimeout(function() {
+        errorElement.style.display = 'none';
+      }, 800); // Same duration as fadeOut
+    }
+  }, 8000);
 }
-$(".closepls").on('click',function() {
-  $(".newplaylist").css('display','none');
+
+document.querySelector(".closepls").addEventListener('click', function() {
+  document.querySelector(".newplaylist").style.display = 'none';
 });
+
