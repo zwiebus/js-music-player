@@ -248,7 +248,9 @@
     if (error) {
      message = document.getElementById("error");
      message.style.display = 'block';
-     $(".playpause-track").removeClass("fa-pause-circle").addClass("fa-play-circle");
+     const playPauseTrack = document.querySelector(".playpause-track");
+     playPauseTrack.classList.remove("fa-pause-circle");
+     playPauseTrack.classList.add("fa-play-circle");
      closeError();
     }
      loadTrack(track_index); // Fallback to current track
@@ -304,4 +306,5 @@ function closeError() {
 document.querySelector(".closepls").addEventListener('click', function() {
   document.querySelector(".newplaylist").style.display = 'none';
 });
+
 
