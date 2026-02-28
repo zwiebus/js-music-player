@@ -12,7 +12,7 @@ It's a dark styled compact version.
 
 The music player can be run on any modern browser by opening the index.html file.
 You can also open the player in a small new window, as shown in start.html.
-The player can easily be integrated into your website - just remember to add the stylesheets and jquery's source (if not present) to the head section!
+The player can easily be integrated into your website - just remember to add the stylesheets to the head section!
 Further information is included in the form of comments in the files.
 
 ## Adding more tracks
@@ -40,6 +40,7 @@ Ensure that the number is always one less than the corresponding number in the t
 <ul>
 <li>Load playlists(.pls, .m3u etc) with Open File</li>
 </ul>
+
 
 
 
