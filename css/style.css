@@ -75,8 +75,6 @@ body {
         font-size: 14px;
         font-family: OpenSans;
         background-color: #393942;
-        /* Choose backgrounds or create your own background image. */
-        /* background: no-repeat center/cover url('js-player-bg3.png');*/
         margin: 0 auto; /* Use only if the player isn't integrated into your website */
         width: 320px;
         border: 1px solid #4f525a;
@@ -96,13 +94,14 @@ body {
         background: #3e3e46;
         overflow-y: auto;
         /* overflow-x: hidden; /* comment in if you wish autoscroll for long trackmames */
-        max-height: 250px;
-        width: 307px;
+        max-height: 174px;
+        width: 306px;
         margin: 6px;
         border: 1px solid #4f525a;
         border-radius: 3px;
         box-sizing: border-box;
         outline-offset: -2px;
+        opacity: 0.9;
 }
 .playlist::-webkit-scrollbar {
         width: 8px;
@@ -142,9 +141,9 @@ body {
         border-radius: 6px;
         margin-bottom: 10px;
         margin-top: -3px;
-        -webkit-box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
-        -moz-box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
-        box-shadow: rgb(255 255 255 / 10%) 0 2px 2px 0 inset;
+        -webkit-box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
+        -moz-box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
+        box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
 }
 .showhide:hover, .file:hover {
         color: #f3f3f7;
@@ -285,4 +284,3 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
-
