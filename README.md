@@ -4,7 +4,7 @@ It's a dark styled compact version.
 
 ![Output](/output/html-css.png)
 
-![Output](/output/playerbg.png)
+![Output](/output/html-css1.png)
 
 ![Output](/output/html-css2.png)
 
@@ -29,6 +29,7 @@ Ensure that the number is always one less than the corresponding number in the t
 <li>Load audio files with Open File</li>
 <li>Choose a background image</li>
 <li>Display an error message when an audio file can not be loaded</li>
+<li>Change background images</li> 
 <li>Ability to display/hide playlist and track details</li>
 <li>Make track name smaller if it's too long</li>
 <li>Playlist: Highlight current track name and scroll it into view</li>
