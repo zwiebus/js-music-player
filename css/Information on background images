@@ -1,0 +1,4 @@
+You can easily create your own background images yourself.
+Save these in the css folder.
+Note that the size must be 320 x 250 px.
+Then add the url (, /css/yourimage.png) in the main javascript under const images (line 316).
