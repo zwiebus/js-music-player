@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- Copy the code from here to '###' to embed the player in your website. -->
-  <div class="player" id="container">
+  <div class="player default" id="container">
      <label for="fileInput"><span class="showhide file">File</span></label>
      <input type="file" id="fileInput" onchange="loadFile();" accept=".mp3,.flac,.wav,.ogg,.aac" multiple/>
       <div class="error" id="error" style="display:none;">An error occurred while loading the audio
@@ -27,11 +27,12 @@
       <div class="track-name" id="track-name">Track Name</div>
       <!-- <div class="track-artist" id="track-name"></div> -->
       <div class="buttons">
-       <a class="showhide" style="margin-right:15px;" onclick="showHidePlaylist();">Playlist</a>
+       <a class="showhide bg" style="margin-left:-40px;margin-right:3px;" onclick="changeBg();">Bg</a>
+       <a class="showhide" onclick="showHidePlaylist();">Playlist</a>
        <div class="prev-track fa fa-step-backward" onclick="prevTrack();"></div>
        <div class="playpause-track fa fa-play-circle" id="playpause" onclick="playpauseTrack()"></div>
        <div class="next-track fa fa-step-forward" onclick="nextTrack()"></div>
-       <a class="showhide" style="margin-right:30px;" onclick="showHideTimes();">Track</a>
+       <a class="showhide" onclick="showHideTimes();">Track</a>
       </div>
      <div class="details">
       <div class="slider_container">
@@ -63,4 +64,3 @@
   <!-- ### -->
  </body>
 </html>
-
