@@ -221,7 +221,6 @@
      }
      player.addEventListener("ended", function(){
       _next += 1;
-      next = -1;
       nextFile(_next);
       if((lens - 1)==_next){
        _next = -1;
@@ -307,4 +306,18 @@ document.querySelector(".closepls").addEventListener('click', function() {
   document.querySelector(".newplaylist").style.display = 'none';
 });
 
+function changeBg() {
+  player = document.querySelector(".player");
+  player.classList.remove("default");
+  player.classList.add("psy");
 
+}
+
+const images = ['css/js-player-bg3.png', 'css/js-player-bg2.png', 'css/light_transpa.png', 'css/js-player-bg_psy.png', 'css/true_transpa'];
+let currentImageIndex = 0;
+
+function changeBg() {
+  player = document.querySelector(".player");
+  player.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+}
