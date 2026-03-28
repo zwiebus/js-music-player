@@ -306,13 +306,7 @@ document.querySelector(".closepls").addEventListener('click', function() {
   document.querySelector(".newplaylist").style.display = 'none';
 });
 
-function changeBg() {
-  player = document.querySelector(".player");
-  player.classList.remove("default");
-  player.classList.add("psy");
-
-}
-
+// Define and change background images
 const images = ['css/js-player-bg3.png', 'css/js-player-bg2.png', 'css/light_transpa.png', 'css/js-player-bg_psy.png', 'css/true_transpa'];
 let currentImageIndex = 0;
 
