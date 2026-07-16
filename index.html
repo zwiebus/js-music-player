@@ -1,44 +1,45 @@
 <!--
  * @package compact-music-player
  * @author sayantanm19
- * @author Zwiebus
+ * @author zwiebus
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Compact Audio Player</title>
+<link rel="shortcut icon" href="img/music.ico">
   <!-- Load the custom CSS style file -->
 <link rel="stylesheet" href="css/style.css"/>
   <!-- Load font family OpenSans -->
 <link rel="stylesheet" href="opensans/opensans.css"/>
   <!-- Load FontAwesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <!-- <script src="js/playlistparser.js"></script> -->
+<link rel="stylesheet" href="fontawesome/css/js-player.css">
+  <!-- to do: <script src="js/playlistparser.js"></script> -->
 </head>
 <body>
 <!-- Copy the code from here to '###' to embed the player in your website. -->
-  <div class="player default" id="container">
-     <label for="fileInput"><span class="showhide file">File</span></label>
-     <input type="file" id="fileInput" onchange="loadFile();" accept=".mp3,.flac,.wav,.ogg,.aac" multiple/>
-      <div class="error" id="error" style="display:none;">An error occurred while loading the audio
+  <div class="player" id="container">
+      <div class="error" id="error" style="display:none;">
        <a class="closeerror" id="closeerror"><i class="fas fa-xmark"></i></a>
       </div>
       <div class="track-name" id="track-name">Track Name</div>
       <!-- <div class="track-artist" id="track-name"></div> -->
       <div class="buttons">
-       <a class="showhide bg" style="margin-left:-40px;margin-right:3px;" onclick="changeBg();">Bg</a>
-       <a class="showhide" onclick="showHidePlaylist();">Playlist</a>
+       <a class="showhide bg" id="changeBg">Bg</a>
+       <a class="showhide" id="showHidePlaylist">Playlist</a>
        <div class="prev-track fa fa-step-backward" onclick="prevTrack();"></div>
-       <div class="playpause-track fa fa-play-circle" id="playpause" onclick="playpauseTrack()"></div>
+       <div class="playpause-track fa fa-play-circle" id="playpause"></div>
        <div class="next-track fa fa-step-forward" onclick="nextTrack()"></div>
-       <a class="showhide" onclick="showHideTimes();">Track</a>
+       <a class="showhide" id="showHideTime">Track</a>
+       <label for="fileInput"><a class="showhide file">Files</a></label>
+       <input type="file" id="fileInput" accept=".mp3,.flac,.wav,.ogg,.aac,.webm,.opus" multiple/>
       </div>
      <div class="details">
       <div class="slider_container">
        <div class="tracknumber" id="tracknumber"></div>
        <i class="fa fa-volume-xmark"></i>
-       <input type="range" min="0" max="100" value="85" class="volume_slider" id="volumeValue" onchange="setVolume()">
+       <input type="range" min="0" max="100" value="85" class="volume_slider" id="volumeValue" onchange="setVolume();">
        <i class="fa fa-volume-high"></i>
        <div id="volume_value" class="volumevalue"></div>
       </div>
@@ -48,14 +49,14 @@
        <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
        <span class="total-duration" id="total-duration">00:00</span>
       </div>
-      <div class="newplaylist" id="newplaylist" style="display:none;">01. song<br>02. song
-       <a class="closepls" id="closepls"><i class="fas fa-xmark"></i></a>
+       <a class="showhide savepls" style="display:none;" id="savepls" onclick="saveJSON();">Save</a>
+      <div class="newplaylist" id="newplaylist" style="display:none;">
       </div>
       <div class="playlist" id="playlist">
-       <div class="track-number tooltipimg" data-track="1" onclick="numberTrack(track_index ,number = '0')">01. Night Owl - Broke For Free<span class="cover"><img src="https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg"></span></div>
-       <div class="track-number tooltipimg" data-track="2" onclick="numberTrack(track_index ,number = '1')">02. Enthusiast - Tours<span class="cover"><img src="https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg"></span></div>
-       <div class="track-number tooltipimg" data-track="3" onclick="numberTrack(track_index ,number = '2')">03. Shipping Lanes - Chad Crouch<span class="cover"><img src="https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg"></span></div>
-       <div class="track-number tooltipimg" data-track="4" onclick="numberTrack(track_index ,number = '3')">04. SomaFM - Groove Salad<i class="fa fas fa-radio" style="float:right;margin-top:3px"></i><span class="cover"><img src="https://somafm.com/img3/groovesalad-400.png"></span></div>
+       <div class="track-number tooltipimg" onclick="numberTrack(track_index ,number = '0')">01. Night Owl - Broke For Free<span class="cover"><img src="https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg"></span></div>
+       <div class="track-number tooltipimg" onclick="numberTrack(track_index ,number = '1')">02. Enthusiast - Tours<span class="cover"><img src="https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg"></span></div>
+       <div class="track-number tooltipimg" onclick="numberTrack(track_index ,number = '2')">03. Shipping Lanes - Chad Crouch<span class="cover"><img src="https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg"></span></div>
+       <div class="track-number tooltipimg" onclick="numberTrack(track_index ,number = '3')">04. SomaFM - Groove Salad<i class="fa fas fa-radio"></i><span class="cover"><img src="img/groovesalad-400.png"></span></div>
         <!-- add more tracks to playlist: track_index, radio?, cover -->
       </div>
     </div>
