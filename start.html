@@ -13,14 +13,14 @@ function playerOpen(url,width,height,options,name) {
   var isChromium = window.chrome,
   isOpera = window.navigator.userAgent.indexOf("OPR") > -1 || window.navigator.userAgent.indexOf("Opera") > -1;
   if(isChromium !== null && isOpera == true){
-   width = width ? width : 360;
-   height = height ? height : 360;
+   width = width ? width : 400;
+   height = height ? height : 400;
    options = options ? options : 'resizable=no,toolbar=0,menuebar=0,location=no,status=no';
    name = name ? name : 'Audioplayer';
    window.open(url,name,'screenX='+(screen.width-width)/2+',screenY='+(screen.height-height)/2+',width='+width+',height='+height+','+options );
   } else {
-   width = width ? width : 340;
-   height = height ? height : 340;
+   width = width ? width : 380;
+   height = height ? height : 380;
    options = options ? options : 'resizable=no,toolbar=0,menuebar=0,location=no,status=no';
    name = name ? name : 'Audioplayer';
    window.open(url,name,'screenX='+(screen.width-width)/2+',screenY='+(screen.height-height)/2+',width='+width+',height='+height+','+options )
