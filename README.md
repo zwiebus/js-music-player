@@ -2,10 +2,6 @@
 This is an HTML, CSS and JavaScript-based music player.
 It's a dark styled compact version.
 
-![Output](/output/html-css.png)
-
-![Output](/output/html-css1.png)
-
 ![Output](/output/html-css2.png)
 
 ## Running the player
