@@ -26,11 +26,13 @@ Ensure that the number is always one less than the corresponding number in the t
 
 ## Features
 <ul>
-<li>Load audio files with Open File</li>
-<li>Choose a background image</li>
+<li>Load audio files</li>
+<li>Validate files (isAudio, maxSize)</li>
+<li>Files Playlist</li>
 <li>Display an error message when an audio file can not be loaded</li>
-<li>Ability to display/hide playlist and track details</li>
+<li>Ability to display/hide playlists and track details</li>
 <li>Make track name smaller if it's too long</li>
+<li>Choose a background image</li>
 <li>Playlist: Highlight current track name and scroll it into view</li>
 <li>Display it's cover when hovering over a track in the playlist</li>
 <li>Optional: Autoscroll track name in playlist once if it's too long</li>
