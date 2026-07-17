@@ -8,21 +8,21 @@ It's a dark styled compact version.
 
 The music player can be run on any modern browser by opening the index.html file.
 You can also open the player in a small new window, as shown in start.html.
-The player can easily be integrated into your website - just remember to add the stylesheets to the head section!
-Further information is included in the form of comments in the files.
+This version is intended for desktop use and should not be used on a server!
 
 ## Adding tracks to the built-in tracklist
 
 The tracks are currently being loaded from the tracklist array specified in main.js. More tracks can be added by adding the details of each track as an object to the tracklist. Only URL sources are supported.
 
-## Add tracks from local sources
-
-Open local audio files with “Files.” A new playlist containing the loaded tracks is automatically created and, if necessary, expanded.
-
-## Add more tracks to playlist
+## Adding more tracks to built-in playlist
 
 You can add more tracks by adding a new <i>div class="track-number"</i> in the index.html file.
 Ensure that the number is always one less than the corresponding number in the tracklist array: 1 = 0, 2 = 1, etc.
+
+## Adding tracks from local sources
+## Although the files are validated, this feature should only be used in desktop mode!
+
+Open local audio files with “Files.” A new playlist containing the loaded tracks is automatically created and, if necessary, expanded.
 
 ## Features
 <ul>
