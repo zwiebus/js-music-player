@@ -20,9 +20,9 @@ You can add more tracks by adding a new <i>div class="track-number"</i> in the i
 Ensure that the number is always one less than the corresponding number in the tracklist array: 1 = 0, 2 = 1, etc.
 
 ## Adding tracks from local sources
-## Although the files are validated, this feature should only be used in desktop mode!
 
 Open local audio files with “Files.” A new playlist containing the loaded tracks is automatically created and, if necessary, expanded.
+Although the files are validated, this feature should only be used in desktop mode!
 
 ## Features
 <ul>
