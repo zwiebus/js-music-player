@@ -11,9 +11,13 @@ You can also open the player in a small new window, as shown in start.html.
 The player can easily be integrated into your website - just remember to add the stylesheets to the head section!
 Further information is included in the form of comments in the files.
 
-## Adding more tracks
+## Adding tracks to the built-in tracklist
 
-The tracks are currently being loaded from the tracklist array specified in main.js. More tracks can be added by adding the details of each track as an object to the tracklist.
+The tracks are currently being loaded from the tracklist array specified in main.js. More tracks can be added by adding the details of each track as an object to the tracklist. Only URL sources are supported.
+
+## Add tracks from local sources
+
+Open local audio files with “Files.” A new playlist containing the loaded tracks is automatically created and, if necessary, expanded.
 
 ## Add more tracks to playlist
 
