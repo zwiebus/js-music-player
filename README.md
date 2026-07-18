@@ -8,7 +8,7 @@ It's a dark styled compact version.
 
 The music player can be run on any modern browser by opening the index.html file.
 You can also open the player in a small new window, as shown in start.html.
-This version is intended for desktop use and should not be used on a server!
+The player can easily be integrated into your website - just remember to add the stylesheets to the head section! Further information is included in the form of comments in the files.
 
 ## Adding tracks to the built-in tracklist
 
