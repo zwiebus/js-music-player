@@ -22,12 +22,12 @@ Ensure that the number is always one less than the corresponding number in the t
 ## Adding tracks from local sources
 
 Open local audio files with “Files.” A new playlist containing the loaded tracks is automatically created and, if necessary, expanded.
-Although the files are validated, this feature should only be used in desktop mode!
+Since there is no upload form, no files are uploaded to a server.
 
 ## Features
 <ul>
 <li>Load audio files</li>
-<li>Validate files (isAudio, maxSize)</li>
+<li>Validate files (magic numbers, MIME Type, size)</li>
 <li>Files Playlist</li>
 <li>Display an error message when an audio file can not be loaded</li>
 <li>Ability to display/hide playlists and track details</li>
