@@ -14,37 +14,89 @@
 
     const fileInput = document.getElementById('fileInput');
 
-   // validate FileList
-    fileInput.addEventListener('input', () => {
-     const files = fileInput.files;
-     const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm', 'audio/aac', 'audio/flac', 'audio/opus'];
-     const requiredSize = 100 * 1024 * 1024;   // first value means MB.
-     let message = document.getElementById("error");
-      for (let i = 0; i < files.length; i++) {
-       file = files[i];
-       size = files[i].size;
-       if(!requiredTypes.includes(file.type)) {
-        message.style.display = 'block';
-        message.textContent = 'You selected an unsupported file (no audio).';
-        message.appendChild(closeerror);
-        closeError();
-        fileInput.value = '';
+// Magic numbers (file signatures) for audio formats
+const AUDIO_MAGIC_NUMBERS = {
+  'audio/mpeg': [0xFF, 0xFB], // MP3
+  'audio/wav': [0x52, 0x49, 0x46, 0x46], // RIFF (WAV)
+  'audio/ogg': [0x4F, 0x67, 0x67, 0x53], // OggS
+  'audio/webm': [0x1A, 0x45, 0xDF, 0xA3], // EBML (WebM)
+  'audio/aac': [0xFF, 0xF1], // AAC ADTS
+  'audio/flac': [0x66, 0x4C, 0x61, 0x43], // fLaC
+  'audio/opus': [0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64] // OpusHead
+};
+
+// Function to validate magic numbers
+async function validateMagicNumber(file, expectedType) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const arr = new Uint8Array(e.target.result).subarray(0, 8);
+      const magicNumbers = AUDIO_MAGIC_NUMBERS[expectedType];
+
+      if (!magicNumbers) {
+        resolve(false);
         return;
-       }
-       if(size > requiredSize) {
-        message.style.display = 'block';
-        message.textContent = 'Files must not exceed 100 MB in size.';
-        message.appendChild(closeerror);
-        closeError();
-        fileInput.value = '';
-        return;
-       }
-     }
-     const tracks = Array.from(fileInput.files); // Convert FileList to array
-      fileArray = fileArray.concat(tracks); // Concatenate input files with existing array
-      console.log(fileArray); // Display the updated array
-      loadFiles(fileArray);
-    });
+      }
+
+      // Check if file starts with expected magic numbers
+      const matches = magicNumbers.every((byte, index) => arr[index] === byte);
+      resolve(matches);
+    };
+
+    reader.onerror = () => resolve(false);
+    reader.readAsArrayBuffer(file.slice(0, 8)); // Read only first 8 bytes
+  });
+}
+
+// validate FileList
+fileInput.addEventListener('input', async () => {
+  const files = fileInput.files;
+  const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm', 'audio/aac', 'audio/flac', 'audio/opus'];
+  const requiredSize = 100 * 1024 * 1024; // 100 MB
+  let message = document.getElementById("error");
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const size = file.size;
+
+    // Check MIME type
+    if (!requiredTypes.includes(file.type)) {
+      message.style.display = 'block';
+      message.textContent = `File "${file.name}" is an unsupported file (no audio).`;
+      message.appendChild(closeerror);
+      closeError();
+      fileInput.value = '';
+      return;
+    }
+
+    // Check file size
+    if (size > requiredSize) {
+      message.style.display = 'block';
+      message.textContent = 'Files must not exceed 100 MB in size.';
+      message.appendChild(closeerror);
+      closeError();
+      fileInput.value = '';
+      return;
+    }
+
+    // Validate magic numbers
+    const isValidMagicNumber = await validateMagicNumber(file, file.type);
+    if (!isValidMagicNumber) {
+      message.style.display = 'block';
+      message.textContent = `File "${file.name}" has an invalid format. The file content does not match the expected audio format.`;
+      message.appendChild(closeerror);
+      closeError();
+      fileInput.value = '';
+      return;
+    }
+  }
+
+  const tracks = Array.from(fileInput.files);
+  fileArray = fileArray.concat(tracks);
+  console.log(fileArray);
+  loadFiles(fileArray);
+});
 
     let lens = 0;
     let blob = 0;
