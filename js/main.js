@@ -106,54 +106,54 @@
       });
     }
 
-// validate FileList
-fileInput.addEventListener('input', async () => {
-  const files = fileInput.files;
-  const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm', 'audio/aac', 'audio/flac', 'audio/opus'];
-  const requiredSize = 100 * 1024 * 1024; // 100 MB
-  let message = document.getElementById("error");
+    // validate FileList
+    fileInput.addEventListener('input', async () => {
+      const files = fileInput.files;
+      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm', 'audio/aac', 'audio/flac', 'audio/opus'];
+      const requiredSize = 100 * 1024 * 1024; // 100 MB
+      let message = document.getElementById("error");
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    const size = file.size;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const size = file.size;
 
-    // Check MIME type
-    if (!requiredTypes.includes(file.type)) {
-      message.style.display = 'block';
-      message.textContent = `File "${file.name}" is an unsupported file (no audio).`;
-      message.appendChild(closeerror);
-      closeError();
-      fileInput.value = '';
-      return;
-    }
+        // Check MIME type
+        if (!requiredTypes.includes(file.type)) {
+          message.style.display = 'block';
+          message.textContent = `File "${file.name}" is an unsupported file (no audio).`;
+          message.appendChild(closeerror);
+          closeError();
+          fileInput.value = '';
+          return;
+        }
 
-    // Check file size
-    if (size > requiredSize) {
-      message.style.display = 'block';
-      message.textContent = 'Files must not exceed 100 MB in size.';
-      message.appendChild(closeerror);
-      closeError();
-      fileInput.value = '';
-      return;
-    }
+        // Check file size
+        if (size > requiredSize) {
+          message.style.display = 'block';
+          message.textContent = 'Files must not exceed 100 MB in size.';
+          message.appendChild(closeerror);
+          closeError();
+          fileInput.value = '';
+          return;
+        }
 
-    // Validate magic numbers
-    const isValidMagicNumber = await validateMagicNumber(file, file.type);
-    if (!isValidMagicNumber) {
-      message.style.display = 'block';
-      message.textContent = `File "${file.name}" has an invalid format. The file content does not match the expected audio format.`;
-      message.appendChild(closeerror);
-      closeError();
-      fileInput.value = '';
-      return;
-    }
-  }
+        // Validate magic numbers
+        const isValidMagicNumber = await validateMagicNumber(file, file.type);
+        if (!isValidMagicNumber) {
+          message.style.display = 'block';
+          message.textContent = `File "${file.name}" has an invalid format. The file content does not match the expected audio format.`;
+          message.appendChild(closeerror);
+          closeError();
+          fileInput.value = '';
+          return;
+        }
+      }
 
-  const tracks = Array.from(fileInput.files);
-  fileArray = fileArray.concat(tracks);
-  console.log(fileArray);
-  loadFiles(fileArray);
-});
+      const tracks = Array.from(fileInput.files);
+      fileArray = fileArray.concat(tracks);
+      console.log(fileArray);
+      loadFiles(fileArray);
+    });
 
     let lens = 0;
     let blob = 0;
