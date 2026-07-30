@@ -14,40 +14,97 @@
 
     const fileInput = document.getElementById('fileInput');
 
-// Magic numbers (file signatures) for audio formats
-const AUDIO_MAGIC_NUMBERS = {
-  'audio/mpeg': [0xFF, 0xFB], // MP3
-  'audio/wav': [0x52, 0x49, 0x46, 0x46], // RIFF (WAV)
-  'audio/ogg': [0x4F, 0x67, 0x67, 0x53], // OggS
-  'audio/webm': [0x1A, 0x45, 0xDF, 0xA3], // EBML (WebM)
-  'audio/aac': [0xFF, 0xF1], // AAC ADTS
-  'audio/flac': [0x66, 0x4C, 0x61, 0x43], // fLaC
-  'audio/opus': [0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64] // OpusHead
-};
-
-// Function to validate magic numbers
-async function validateMagicNumber(file, expectedType) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const arr = new Uint8Array(e.target.result).subarray(0, 8);
-      const magicNumbers = AUDIO_MAGIC_NUMBERS[expectedType];
-
-      if (!magicNumbers) {
-        resolve(false);
-        return;
-      }
-
-      // Check if file starts with expected magic numbers
-      const matches = magicNumbers.every((byte, index) => arr[index] === byte);
-      resolve(matches);
+    // Magic numbers (file signatures) for audio formats
+    const AUDIO_MAGIC_NUMBERS = {
+      'audio/mpeg': [
+        [0x49, 0x44, 0x33],        // "ID3" tag at start
+        // We keep explicit common exact byte pairs too (optional)
+        [0xFF, 0xFB],              // common MPEG frame sync bytes
+        [0xFF, 0xF3],
+        [0xFF, 0xF2]
+      ],
+      'audio/wav': [
+        [0x52, 0x49, 0x46, 0x46]   // "RIFF"
+      ],
+      'audio/ogg': [
+        [0x4F, 0x67, 0x67, 0x53]   // "OggS"
+      ],
+      'audio/webm': [
+        [0x1A, 0x45, 0xDF, 0xA3]   // EBML
+      ],
+      'audio/aac': [
+        [0xFF, 0xF1],              // AAC ADTS (one common form)
+        [0xFF, 0xF9]               // another possible ADTS sync
+      ],
+      'audio/flac': [
+        [0x66, 0x4C, 0x61, 0x43]   // "fLaC"
+      ],
+      'audio/opus': [
+        [0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64] // "OpusHead"
+      ]
     };
 
-    reader.onerror = () => resolve(false);
-    reader.readAsArrayBuffer(file.slice(0, 8)); // Read only first 8 bytes
-  });
-}
+    function matchesSignature(bytes, signature) {
+      if (bytes.length < signature.length) return false;
+      for (let i = 0; i < signature.length; i++) {
+        if (bytes[i] !== signature[i]) return false;
+      }
+      return true;
+    }
+
+    // MP3-specific loose check: ID3 OR frame-sync (first 11 bits set)
+    // Frame sync check: bytes[0] === 0xFF and (bytes[1] & 0xE0) === 0xE0
+    function isLikelyMp3(bytes) {
+      if (matchesSignature(bytes, [0x49, 0x44, 0x33])) return true; // "ID3"
+      if (bytes.length >= 2 && bytes[0] === 0xFF && (bytes[1] & 0xE0) === 0xE0) return true; // frame sync (mask)
+      // fallback: try exact two-byte signatures we listed
+      for (const sig of AUDIO_MAGIC_NUMBERS['audio/mpeg']) {
+        if (matchesSignature(bytes, sig)) return true;
+      }
+      return false;
+    }
+
+    async function validateMagicNumber(file, expectedType) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+
+        // Determine how many bytes we need to read: the longest signature for this type
+        const sigList = AUDIO_MAGIC_NUMBERS[expectedType];
+        const defaultRead = 8;
+        let readBytes = defaultRead;
+        if (Array.isArray(sigList) && sigList.length) {
+          readBytes = Math.max(...sigList.map(s => s.length), defaultRead);
+        }
+
+        reader.onload = (e) => {
+          const arr = new Uint8Array(e.target.result || new ArrayBuffer(0));
+
+          if (!sigList) {
+            resolve(false);
+            return;
+          }
+
+          // Special-case MP3 because frame sync uses a mask, not a single fixed byte pattern
+          if (expectedType === 'audio/mpeg') {
+            resolve(isLikelyMp3(arr));
+            return;
+          }
+
+          // For other types: check each signature in the list (exact match)
+          for (const sig of sigList) {
+            if (matchesSignature(arr, sig)) {
+              resolve(true);
+              return;
+            }
+          }
+
+          resolve(false);
+        };
+
+        reader.onerror = () => resolve(false);
+        reader.readAsArrayBuffer(file.slice(0, readBytes));
+      });
+    }
 
 // validate FileList
 fileInput.addEventListener('input', async () => {
