@@ -29,8 +29,11 @@
       'audio/ogg': [
         [0x4F, 0x67, 0x67, 0x53]   // "OggS"
       ],
-      'audio/webm': [
-        [0x1A, 0x45, 0xDF, 0xA3]   // EBML
+      'video/ogg': [
+        [0x4F, 0x67, 0x67, 0x53]   // "OggS"   Firefox ESR and most forks of it
+      ],
+      'application/ogg':[
+        [0x4F, 0x67, 0x67, 0x53]   // "OggS"   Some Firefox forks
       ],
       'audio/aac': [
         [0xFF, 0xF1],              // AAC ADTS (one common form)
@@ -40,7 +43,7 @@
         [0x66, 0x4C, 0x61, 0x43]   // "fLaC"
       ],
       'audio/opus': [
-        [0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64] // "OpusHead"
+        [0x4F, 0x67, 0x67, 0x53, 0x00, 0x2E, 0x2E, 0x2E] // "OpusHead"
       ]
     };
 
@@ -109,18 +112,18 @@
     // validate FileList
     fileInput.addEventListener('input', async () => {
       const files = fileInput.files;
-      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/webm', 'audio/aac', 'audio/flac', 'audio/opus'];
+      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/flac', 'audio/opus'];
       const requiredSize = 100 * 1024 * 1024; // 100 MB
       let message = document.getElementById("error");
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const size = file.size;
+        //console.log(file.name, file.type);
 
         // Check MIME type
         if (!requiredTypes.includes(file.type)) {
           message.style.display = 'block';
-          message.textContent = `File "${file.name}" is an unsupported file (no audio).`;
+          message.textContent = `File "${file.name}" is an unsupported file.`;
           message.appendChild(closeerror);
           closeError();
           fileInput.value = '';
@@ -128,7 +131,7 @@
         }
 
         // Check file size
-        if (size > requiredSize) {
+        if (file.size > requiredSize) {
           message.style.display = 'block';
           message.textContent = 'Files must not exceed 100 MB in size.';
           message.appendChild(closeerror);
@@ -151,7 +154,7 @@
 
       const tracks = Array.from(fileInput.files);
       fileArray = fileArray.concat(tracks);
-      console.log(fileArray);
+      // console.log(fileArray);
       loadFiles(fileArray);
     });
 
