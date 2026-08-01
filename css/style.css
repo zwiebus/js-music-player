@@ -21,8 +21,8 @@ body {
         top: 5px;
         left: 5px;
         font-size: 13px;
-        width: 307px;
-        padding: 10px;
+        width: 289px;
+        padding: 8px 30px 8px 8px;
         color: #f99090;
         text-align: left;
         background: #393942;
@@ -35,7 +35,7 @@ body {
 }
 .closeerror {
         position: absolute;
-        top: 6px;
+        top: 5px;
         right: 3px;
         font-size: 16px;
         font-weight: bold;
