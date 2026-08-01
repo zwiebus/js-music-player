@@ -168,7 +168,7 @@
    // Create and config audio element
     let curr_track = document.createElement('audio');
         curr_track.setAttribute("id", "player");
-        curr_track.setAttribute("type", "audio/mpeg");
+        curr_track.setAttribute("type", "audio/*");
         container.appendChild(curr_track);
 
     curr_track.addEventListener("ended", nextTrack);
