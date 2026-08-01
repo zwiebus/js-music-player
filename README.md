@@ -27,6 +27,7 @@ Since there is no upload form, no files are uploaded to a server.
 ## Features
 <ul>
 <li>Load audio files</li>
+<li>Supported Files: .mp3, .flac, .wav, .ogg, .aac, .opus, .m4a</li>
 <li>Validate files (magic numbers, MIME Type, size)</li>
 <li>Files Playlist</li>
 <li>Display an error message when an audio file can not be loaded</li>
