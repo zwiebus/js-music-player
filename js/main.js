@@ -39,6 +39,13 @@
         [0xFF, 0xF1],              // AAC ADTS (one common form)
         [0xFF, 0xF9]               // another possible ADTS sync
       ],
+      'audio/vnd.dlna.adts': [
+        [0xFF, 0xF1],              // AAC ADTS (one common form)   Firefox
+        [0xFF, 0xF9]               // another possible ADTS sync
+      ],
+      'audio/mp4': [
+        [0x00, 0x00, 0x00, 0x1C]   // AAC MP4
+      ],
       'audio/flac': [
         [0x66, 0x4C, 0x61, 0x43]   // "fLaC"
       ],
@@ -112,13 +119,13 @@
     // validate FileList
     fileInput.addEventListener('input', async () => {
       const files = fileInput.files;
-      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/flac', 'audio/opus'];
+      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/mp4', 'audio/vnd.dlna.adts', 'audio/flac', 'audio/opus'];
       const requiredSize = 100 * 1024 * 1024; // 100 MB
       let message = document.getElementById("error");
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        //console.log(file.name, file.type);
+        console.log(file.name, file.type);
 
         // Check MIME type
         if (!requiredTypes.includes(file.type)) {
@@ -154,7 +161,7 @@
 
       const tracks = Array.from(fileInput.files);
       fileArray = fileArray.concat(tracks);
-      // console.log(fileArray);
+      console.log(fileArray);
       loadFiles(fileArray);
     });
 
@@ -189,7 +196,6 @@
    function loadFiles(fileArray) {
      lens = fileArray.length;
       let _next = 0;
-       //let n = (_next + lens - 1) % lens;
        if(lens > 0){
         nextFile(_next);
        }
@@ -542,23 +548,3 @@ function changeBg() {
   player.style.backgroundImage = `url('${images[currentImageIndex]}')`;
   currentImageIndex = (currentImageIndex + 1) % images.length;
 }
-
-// to do : save playlist as json file
-/* function saveJSON() {
-     fileArray.forEach(file => {
-      trackName = file.name;
-     });
-   saveArrayAsJSON(fileArray, 'pls.json');
-}
-
-function saveArrayAsJSON(fileArray, filename) {
-  const jsonString = JSON.stringify(fileArray, trackName);
-  const blob = new Blob([jsonString], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-} */
