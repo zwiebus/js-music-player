@@ -250,7 +250,7 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         font-size: 18px;
 }
 .volumevalue, .tracknumber {
-        width: 42px;
+        width: 45px;
 }
 .tracknumber {
         margin-right: -15px;
