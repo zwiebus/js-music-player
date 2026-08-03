@@ -46,6 +46,9 @@
       'audio/mp4': [
         [0x00, 0x00, 0x00, 0x1C]   // AAC MP4
       ],
+      'audio/x-m4a': [
+        [0x00, 0x00, 0x00, 0x1C]   // AAC MP4   Chromium
+      ],
       'audio/flac': [
         [0x66, 0x4C, 0x61, 0x43]   // "fLaC"
       ],
@@ -119,7 +122,7 @@
     // validate FileList
     fileInput.addEventListener('input', async () => {
       const files = fileInput.files;
-      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/mp4', 'audio/vnd.dlna.adts', 'audio/flac', 'audio/opus'];
+      const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/vnd.dlna.adts', 'audio/flac', 'audio/opus'];
       const requiredSize = 100 * 1024 * 1024; // 100 MB
       let message = document.getElementById("error");
 
