@@ -35,7 +35,7 @@ Since there is no upload form, no files are uploaded to a server.
 <li>Make track name smaller if it's too long</li>
 <li>Choose a background image</li>
 <li>Playlist: Highlight current track name and scroll it into view</li>
-<li>Display it's cover when hovering over a track in the playlist (only for build-in playlist)</li>
+<li>Display it's cover when hovering over a track in the build-in playlist</li>
 <li>Optional: Autoscroll track name in playlist once if it's too long</li>
 </ul>
 
