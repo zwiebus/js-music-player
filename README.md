@@ -1,4 +1,4 @@
-# compact-js-music-player
+# compact-js-music-player (full file playback support)
 This is an HTML, CSS and JavaScript-based music player.
 It's a dark styled compact version.
 
