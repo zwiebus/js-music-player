@@ -215,6 +215,7 @@
      let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
      track_name.textContent = title;
      tracknumber.textContent = '';
+     tracknumber.classList.remove('fa','fa-radio');
      tracknumber.classList.add('fa','fa-file-audio');
      updateTimer = setInterval(seekUpdate, 1000);
      playTrack();
@@ -243,6 +244,7 @@
          curr_track.src = url;
          track_name.textContent = title;
          tracknumber.textContent = '';
+         tracknumber.classList.remove('fa','fa-radio');
          tracknumber.classList.add('fa','fa-file-audio');
          playTrack();
          smallName();
@@ -285,6 +287,7 @@
       curr_track.src = track_list[track_index].path;
       curr_track.load();
       track_name.textContent = track_list[track_index].name;
+      tracknumber.classList.remove('fa','fa-radio');
       tracknumber.classList.remove('fa','fa-file-audio');
       tracknumber.textContent = track_list[track_index].number + '.';
       if (tracknumber.textContent < 10) {tracknumber.textContent = "0" + tracknumber.textContent;}
