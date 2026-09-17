@@ -280,12 +280,13 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
-.fa-radio {
-        position:absolute;
-        right:5px;
-        margin-top:2px
-}
-.fa-file-audio {
+/*
+  .fa-radio {
+          position:absolute;
+          right:5px;
+          margin-top:2px
+  } */
+.fa-file-audio, fa-radio {
         font-size: 16px;
         margin-top: 1px;
 }
