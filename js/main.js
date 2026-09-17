@@ -281,6 +281,14 @@
     number: "4",
   },
  ];
+    function isnanRadio() {
+      if(isNaN(total_duration.value)) {
+       tracknumber.textContent = '';
+       tracknumber.classList.remove('fa','fa-file-audio');
+       tracknumber.classList.add('fa','fa-radio');
+      }
+    }
+
     function loadTrack(track_index) {
       clearInterval(updateTimer);
       resetValues();
