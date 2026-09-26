@@ -10,7 +10,6 @@ body {
         font-family: OpenSans;
         font-size: 15px;
 }
-
 #fileInput, #player {
         display: none;
 }
@@ -49,13 +48,6 @@ body {
 .closeerror:hover, .savepls:hover {
         background: #41414b;
 }
-.savepls {
-        position: absolute;
-        top: 143px;
-        right: 10px;
-        font-size: 14px;
-        z-index: 2000;
-}
 /*Display cover when hover playlist track */
 .tooltipimg .cover {
         display:none;
@@ -85,9 +77,21 @@ body {
         border-radius: 6px;
         box-sizing: border-box;
 }
-/* .newplaylist {
-} */
-
+.clearlist {
+        position: absolute;
+        margin-top: 2px;
+        right: 10px;
+        padding: 1px 6px !important;
+        z-index: 1000;
+        background: #393942;
+        padding: 0 5px;
+        border: 1px solid #4f525a;
+        border-radius: 5px;
+        cursor: pointer;
+}
+.clearlist:hover {
+        background: #41414b;
+}
 .playlist, .newplaylist {
         position: relative;
         scrollbar-color: #777 #888;   /* Firefox */
@@ -141,7 +145,7 @@ body {
         text-align: center;
         text-decoration: none;
         background: #5a5b64;
-        padding: 3px 6px;
+        padding: 2px 6px;
         border-radius: 6px;
         -webkit-box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
         box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
@@ -174,8 +178,9 @@ body {
         transition: opacity .2s;
 }
 .track-number {
-        /*white-space: nowrap; /* comment out if you wish autoscroll for long tracknames.
-        don't forget to also comment in "autoscrollPls();" in main.js */
+        /*comment the following out if you wish autoscroll for long tracknames. don't forget to also comment in "autoscrollPls();" in main.js */
+        /*white-space: nowrap;
+         overflow: hidden; */
         border-bottom: 1px solid #4f525a;
         padding: 1px 4px;
         box-sizing: border-box;
@@ -249,8 +254,11 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         padding: 10px 5px;
         font-size: 18px;
 }
+.fa-volume-xmark, .fa-volume-high {
+        cursor: pointer;
+}
 .volumevalue, .tracknumber {
-        width: 45px;
+        width: 42px;
 }
 .tracknumber {
         margin-right: -15px;
@@ -261,12 +269,15 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 }
 .times {
         margin-bottom: 10px;
-       /* Prevent line break when displaying total-duration as 'NaN' */
-        white-space: nowrap;
-        overflow: hidden;
 }
 .current-time, .total-duration {
         margin: 0 15px;
+}
+.total-duration {
+        width: 55px;
+       /* Prevent line break when displaying total-duration as 'NaN' */
+        white-space: nowrap;
+        overflow: hidden;
 }
 .fa-play-circle, .fa-pause-circle, .fa-step-forward, .fa-step-backward {
         font-size: 22px;
@@ -280,13 +291,12 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
 }
-/*
-  .fa-radio {
+.fa-radio {
           position:absolute;
           right:5px;
           margin-top:2px
-  } */
-.fa-file-audio, fa-radio {
+}
+.fa-file-audio, fa-radio, .fa-spinner {
         font-size: 16px;
         margin-top: 1px;
 }
