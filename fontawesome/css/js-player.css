@@ -51,6 +51,26 @@
 .fa-xmark {
   --fa: "\f00d"; }
 
+.fa-spinner {
+  --fa: "\f110";}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 :root, :host {
   --fa-style-family-classic: 'Font Awesome 6 Free';
   --fa-font-regular: normal 400 1em/1 'Font Awesome 6 Free'; }
