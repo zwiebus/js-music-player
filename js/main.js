@@ -9,6 +9,7 @@
     const volume_slider = document.querySelector(".volume_slider");
     const curr_time = document.querySelector(".current-time");
     const total_duration = document.querySelector(".total-duration");
+    const volumevalue = document.querySelector(".volumevalue");
 
     let fileArray = [];
 
@@ -195,17 +196,33 @@
       playPauseTrack.classList.add("fa-pause-circle");
     });
 
+    const clear = document.getElementById("clearlist");
+    clear.addEventListener('click', clearlist);
+
+    function clearlist() {
+      let list = document.getElementById("newplaylist");
+      let clear = document.getElementById("clearlist");
+       if(list.style.display = 'block') {
+        list.style.display = 'none';
+        clear.style.display = 'none';
+        fileInput.value = '';
+        fileArray = [];
+        pauseTrack();
+        removeClass();
+        loadTrack(track_index);
+       }
+    }
    // Load audio files
-   function loadFiles(fileArray) {
+    function loadFiles(fileArray) {
      lens = fileArray.length;
       let _next = 0;
        if(lens > 0){
         nextFile(_next);
        }
      newPl();
-   }
+    }
 
-   function nextFile(n) {
+    function nextFile(n) {
      clearInterval(updateTimer);
      resetValues();
      let url = URL.createObjectURL(fileArray[n]);
@@ -215,16 +232,15 @@
      let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
      track_name.textContent = title;
      tracknumber.textContent = '';
-     tracknumber.classList.remove('fa','fa-radio');
      tracknumber.classList.add('fa','fa-file-audio');
      updateTimer = setInterval(seekUpdate, 1000);
      playTrack();
      smallName();
      activeTrack();
-   }
+    }
 
   // create new playlist
-   function newPl() {
+    function newPl() {
      let newplaylist = document.getElementById("newplaylist");
      newplaylist.innerText = '';
      fileArray.forEach((file, index) => {
@@ -244,7 +260,6 @@
          curr_track.src = url;
          track_name.textContent = title;
          tracknumber.textContent = '';
-         tracknumber.classList.remove('fa','fa-radio');
          tracknumber.classList.add('fa','fa-file-audio');
          playTrack();
          smallName();
@@ -255,39 +270,34 @@
         //autoscrollPls();   // comment in for autoscroll track-number text
      });
      newplaylist.style.display = 'block';
-   }
-
- // Use track_list only for URL sources
-    let track_list = [
-  {
-    name: "Night Owl - Broke For Free",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3",
-    number: "1",
-  },
-  {
-    name: "Enthusiast - Tours",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3",
-    number: "2",
-  },
-  {
-    name: "Shipping Lanes - Chad Crouch",
-    path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
-    number: "3",
-  },
-  // Internet radio stream
-  {
-    name: "SomaFM - Groove Salad",
-    path: "https://ice5.somafm.com/groovesalad-256-mp3",
-    number: "4",
-  },
- ];
-    function isnanRadio() {
-      if(isNaN(total_duration.value)) {
-       tracknumber.textContent = '';
-       tracknumber.classList.remove('fa','fa-file-audio');
-       tracknumber.classList.add('fa','fa-radio');
-      }
+     let clear = document.getElementById("clearlist");
+      clear.style.display = 'block';
     }
+
+   // Use track_list only for URL sources
+    let track_list = [
+      {
+        name: "Night Owl - Broke For Free",
+        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/WFMU/Broke_For_Free/Directionless_EP/Broke_For_Free_-_01_-_Night_Owl.mp3",
+        number: "1",
+      },
+      {
+        name: "Enthusiast - Tours",
+        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3",
+        number: "2",
+      },
+      {
+        name: "Shipping Lanes - Chad Crouch",
+        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
+        number: "3",
+      },
+      // Internet radio stream
+      {
+        name: "SomaFM - Groove Salad",
+        path: "https://ice5.somafm.com/groovesalad-256-mp3",
+        number: "4",
+      },
+    ];
 
     function loadTrack(track_index) {
       clearInterval(updateTimer);
@@ -295,12 +305,12 @@
       curr_track.src = track_list[track_index].path;
       curr_track.load();
       track_name.textContent = track_list[track_index].name;
-      tracknumber.classList.remove('fa','fa-radio');
       tracknumber.classList.remove('fa','fa-file-audio');
+      //tracknumber.classList.remove('fa','fa-radio');
       tracknumber.textContent = track_list[track_index].number + '.';
       if (tracknumber.textContent < 10) {tracknumber.textContent = "0" + tracknumber.textContent;}
       updateTimer = setInterval(seekUpdate, 1000);
-      //playTrack();
+      pauseTrack();
       activeTrack();
       smallName();
       //autoscrollPls();  // comment in for autoscroll track-number text
@@ -417,12 +427,12 @@
     playlists.addEventListener('click', showHidePlaylist);
 
     function showHidePlaylist() {
-     let x = document.querySelectorAll(".playlist, .newplaylist");
-     for (let i = 0; i < x.length; i++) {
-      if (x[i].style.display === "none") {
-       x[i].style.display = "block";
+     let pls = document.querySelectorAll(".playlist, .newplaylist");
+     for (let i = 0; i < pls.length; i++) {
+      if (pls[i].style.display === "none") {
+       pls[i].style.display = "block";
       } else {
-       x[i].style.display = "none";
+       pls[i].style.display = "none";
       }
      }
     }
@@ -439,6 +449,26 @@
      }
     }
 
+
+    const volumeX = document.querySelector(".fa-volume-xmark");
+    volumeX.addEventListener('click', volX);
+
+    function volX() {
+     volume_slider.value = 0;
+     curr_track.volume = volume_slider.value;
+     volumevalue.innerText = volume_slider.value  + " %"
+    }
+
+
+    const volumeH = document.querySelector(".fa-volume-high");
+    volumeH.addEventListener('click', volH);
+
+    function volH() {
+     volume_slider.value = '100';
+     curr_track.volume = 1.0;
+     volumevalue.innerText = "100 %"
+    }
+
   // display volume_slider value
     const slider = document.getElementById("volumeValue");
     const output = document.getElementById("volume_value");
@@ -452,10 +482,10 @@
       const track = track_name;
       const tracks = document.querySelectorAll(".track-number");
        for (let i = 0; i < tracks.length; i++) {
-        let title = tracks[i].textContent.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
+        let title = tracks[i].textContent.replace(/^[0-9. -]+/,'').replace(/[_ \n]/g,' ').replace(/\.[^.]*$/,'');
          if(track.textContent == title) {
           tracks[i].classList.add("active");
-          //tracks[i].scrollIntoView();   // optional if playlists height is greater than specified
+          tracks[i].scrollIntoView();   // optional if playlists height is greater than specified
          } else {
           tracks[i].classList.remove("active");
          }
@@ -464,7 +494,7 @@
 
     function removeClass() {
       const playPauseTrack = document.querySelector(".playpause-track");
-      if(!curr_track.paused) {
+      if(curr_track.paused) {
       playPauseTrack.classList.remove("fa-pause-circle");
       playPauseTrack.classList.add("fa-play-circle");
       }
@@ -489,76 +519,77 @@
         pls[i].classList.add("autoscroll");
        }
       }
-   }
-
-  // Display audio error message
-   const audio = document.getElementById('player');
-   let closeerror = document.getElementById("closeerror");
-    audio.addEventListener('error', function() {
-    const error = audio.error;
-    if (error) {
-     message = document.getElementById("error");
-     message.style.display = 'block';
-     message.textContent ='The audio file seems to be damaged and/or corrupted.';
-     message.appendChild(closeerror);
-     const playPauseTrack = document.querySelector(".playpause-track");
-     playPauseTrack.classList.remove("fa-pause-circle");
-     playPauseTrack.classList.add("fa-play-circle");
-     closeError();
-     let errortrack = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
-     if(lens == 1) {
-      errortrack = document.querySelector('div[data-track="1"]');
-      errortrack.style.display = 'none';
-     } else {
-      erlens = lens;
-      errortrack = document.querySelector('div[data-track="' + erlens + '"]');
-      errortrack.style.display = 'none';
-     }
-    fileArray.pop();
-    track_name.textContent = 'Error. Please choose a valid track';
     }
-   });
 
-// toogle play pause
-document.querySelector(".playpause-track").addEventListener('click', function() {
-  this.classList.toggle("fa-play-circle");
-  this.classList.toggle("fa-pause-circle");
-});
+    // Display audio error message
+    const audio = document.getElementById('player');
+    let closeerror = document.getElementById("closeerror");
+     audio.addEventListener('error', function() {
+     const error = audio.error;
+     if (error) {
+      message = document.getElementById("error");
+      message.style.display = 'block';
+      message.textContent ='The audio file seems to be damaged and/or corrupted.';
+      message.appendChild(closeerror);
+      const playPauseTrack = document.querySelector(".playpause-track");
+      playPauseTrack.classList.remove("fa-pause-circle");
+      playPauseTrack.classList.add("fa-play-circle");
+      closeError();
+       let errortrack = document.getElementsByClassName("track-number")[0].getAttribute("div[data-track]");
+       if(lens == 1) {
+        errortrack = document.querySelector('div[data-track="1"]');
+        errortrack.style.display = 'none';
+       } else {
+        erlens = lens;
+        errortrack = document.querySelector('div[data-track="' + erlens + '"]');
+        errortrack.style.display = 'none';
+       }
+        track_name.textContent = 'Audio error ... ';
+        fileInput.value = '';
+        fileArray.pop();
+      }
+     });
 
-const trackSelection = document.querySelectorAll(".prev-track, .next-track, .track-number");
-  trackSelection.forEach(function(element) {
-   element.addEventListener('click', function() {
-    const playPauseTrack = document.querySelector(".playpause-track");
-    playPauseTrack.classList.remove("fa-play-circle");
-    playPauseTrack.classList.add("fa-pause-circle");
-  });
-});
+    // toogle play pause
+    document.querySelector(".playpause-track").addEventListener('click', function() {
+      this.classList.toggle("fa-play-circle");
+      this.classList.toggle("fa-pause-circle");
+    });
 
-// Close error message or fade out after 8 seconds
-document.querySelector(".closeerror").addEventListener('click', function() {
-  document.querySelector(".error").style.display = 'none';
-});
+    const trackSelection = document.querySelectorAll(".prev-track, .next-track, .track-number");
+      trackSelection.forEach(function(element) {
+       element.addEventListener('click', function() {
+        const playPauseTrack = document.querySelector(".playpause-track");
+        playPauseTrack.classList.remove("fa-play-circle");
+        playPauseTrack.classList.add("fa-pause-circle");
+      });
+    });
 
-function closeError() {
-  setTimeout(function() {
-   const element = document.getElementById("error");
-    element.classList.add("fading-out"); // Triggers transition
-    element.addEventListener("transitionend", () => {
-     element.style.display = "none";
-     element.classList.remove("fading-out");
-    }, { once: true });
-  }, 8000);
-}
+    // Close error message or fade out after 8 seconds
+    document.querySelector(".closeerror").addEventListener('click', function() {
+      document.querySelector(".error").style.display = 'none';
+    });
 
-// change background image . add new images
-const images = ['img/js-player-bg3.png', 'img/js-player-bg2.png', 'img/js-player-bg_psy.png', 'img/true_transpa', 'img/light_transpa.png'];
-let currentImageIndex = 0;
+    function closeError() {
+      setTimeout(function() {
+       const element = document.getElementById("error");
+        element.classList.add("fading-out"); // Triggers transition
+        element.addEventListener("transitionend", () => {
+         element.style.display = "none";
+         element.classList.remove("fading-out");
+        }, { once: true });
+      }, 8000);
+    }
 
-const changeBgd = document.getElementById("changeBg");
-changeBgd.addEventListener('click', changeBg);
+    // change background image . add new images
+    const images = ['img/js-player-bg3.png', 'img/js-player-bg2.png', 'img/js-player-bg_psy.png', 'img/true_transpa', 'img/light_transpa.png'];
+    let currentImageIndex = 0;
 
-function changeBg() {
-  player = document.getElementById("container");
-  player.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-  currentImageIndex = (currentImageIndex + 1) % images.length;
-}
+    const changeBgd = document.getElementById("changeBg");
+    changeBgd.addEventListener('click', changeBg);
+
+    function changeBg() {
+      player = document.getElementById("container");
+      player.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
