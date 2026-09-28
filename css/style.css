@@ -7,8 +7,19 @@
 
 body {
         background-color: #393942;
+}
+.player {
         font-family: OpenSans;
         font-size: 15px;
+        position: relative;
+        color: #d8dbe7;
+        background: url('../img/light_transpa.png');
+        background-color: #393942;
+        margin: 0 auto; /* Use only if the player isn't integrated into your website */
+        width: 340px;
+        border: 1px solid #4f525a;
+        border-radius: 6px;
+        box-sizing: border-box;
 }
 #fileInput, #player {
         display: none;
@@ -65,17 +76,6 @@ body {
         bottom: 1px;
         right: 7px;
         z-index:1000;
-}
-.player {
-        position: relative;
-        color: #d8dbe7;
-        background: url('../img/light_transpa.png');
-        background-color: #393942;
-        margin: 0 auto; /* Use only if the player isn't integrated into your website */
-        width: 340px;
-        border: 1px solid #4f525a;
-        border-radius: 6px;
-        box-sizing: border-box;
 }
 .clearlist {
         position: absolute;
@@ -150,7 +150,7 @@ body {
         -webkit-box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
         box-shadow: rgb(255 255 255 / 12%) 0 2px 2px 0 inset;
 }
-.showhide:hover, .file:hover {
+.showhide:hover {
         color: #f3f3f7;
         background: #4e4f58;
 }
@@ -250,15 +250,8 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .playpause-track:hover, .prev-track:hover, .next-track:hover, .volume_slider:hover, .seek_slider:hover {
         opacity: 1.0;
 }
-.fa-volume-xmark, .fa-volume-high {
-        padding: 10px 5px;
-        font-size: 18px;
-}
-.fa-volume-xmark, .fa-volume-high {
-        cursor: pointer;
-}
 .volumevalue, .tracknumber {
-        width: 42px;
+        width: 45px;
 }
 .tracknumber {
         margin-right: -15px;
@@ -279,6 +272,11 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         white-space: nowrap;
         overflow: hidden;
 }
+.fa-volume-xmark, .fa-volume-high {
+        padding: 10px 5px;
+        font-size: 18px;
+        cursor: pointer;
+}
 .fa-play-circle, .fa-pause-circle, .fa-step-forward, .fa-step-backward {
         font-size: 22px;
         padding: 0 14px;
@@ -292,11 +290,11 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         color: #a1d4ff;
 }
 .fa-radio {
-          position:absolute;
-          right:5px;
-          margin-top:2px
+        position:absolute;
+        right:5px;
+        margin-top:2px
 }
-.fa-file-audio, fa-radio, .fa-spinner {
+.fa-file-audio, fa-radio {
         font-size: 16px;
         margin-top: 1px;
 }
