@@ -81,7 +81,6 @@
     async function validateMagicNumber(file, expectedType) {
       return new Promise((resolve) => {
         const reader = new FileReader();
-
         // Determine how many bytes we need to read: the longest signature for this type
         const sigList = AUDIO_MAGIC_NUMBERS[expectedType];
         const defaultRead = 8;
@@ -89,7 +88,6 @@
         if (Array.isArray(sigList) && sigList.length) {
           readBytes = Math.max(...sigList.map(s => s.length), defaultRead);
         }
-
         reader.onload = (e) => {
           const arr = new Uint8Array(e.target.result || new ArrayBuffer(0));
 
@@ -97,13 +95,11 @@
             resolve(false);
             return;
           }
-
           // Special-case MP3 because frame sync uses a mask, not a single fixed byte pattern
           if (expectedType === 'audio/mpeg') {
             resolve(isLikelyMp3(arr));
             return;
           }
-
           // For other types: check each signature in the list (exact match)
           for (const sig of sigList) {
             if (matchesSignature(arr, sig)) {
@@ -111,10 +107,8 @@
               return;
             }
           }
-
           resolve(false);
         };
-
         reader.onerror = () => resolve(false);
         reader.readAsArrayBuffer(file.slice(0, readBytes));
       });
@@ -126,11 +120,9 @@
       const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/vnd.dlna.adts', 'audio/flac', 'audio/opus'];
       const requiredSize = 100 * 1024 * 1024; // 100 MB
       let message = document.getElementById("error");
-
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        console.log(file.name, file.type);
-
+        // console.log(file.name, file.type);
         // Check MIME type
         if (!requiredTypes.includes(file.type)) {
           message.style.display = 'block';
@@ -140,7 +132,6 @@
           fileInput.value = '';
           return;
         }
-
         // Check file size
         if (file.size > requiredSize) {
           message.style.display = 'block';
@@ -150,7 +141,6 @@
           fileInput.value = '';
           return;
         }
-
         // Validate magic numbers
         const isValidMagicNumber = await validateMagicNumber(file, file.type);
         if (!isValidMagicNumber) {
@@ -162,13 +152,13 @@
           return;
         }
       }
-
       const tracks = Array.from(fileInput.files);
       fileArray = fileArray.concat(tracks);
-      console.log(fileArray);
+      // console.log(fileArray);
       loadFiles(fileArray);
     });
 
+    // default variables
     let lens = 0;
     let blob = 0;
     let files_index = 0;
@@ -196,22 +186,6 @@
       playPauseTrack.classList.add("fa-pause-circle");
     });
 
-    const clear = document.getElementById("clearlist");
-    clear.addEventListener('click', clearlist);
-
-    function clearlist() {
-      let list = document.getElementById("newplaylist");
-      let clear = document.getElementById("clearlist");
-       if(list.style.display = 'block') {
-        list.style.display = 'none';
-        clear.style.display = 'none';
-        fileInput.value = '';
-        fileArray = [];
-        pauseTrack();
-        removeClass();
-        loadTrack(track_index);
-       }
-    }
    // Load audio files
     function loadFiles(fileArray) {
      lens = fileArray.length;
@@ -272,6 +246,24 @@
      newplaylist.style.display = 'block';
      let clear = document.getElementById("clearlist");
       clear.style.display = 'block';
+    }
+
+    // remove files and close files playlist
+    const clear = document.getElementById("clearlist");
+    clear.addEventListener('click', clearlist);
+
+    function clearlist() {
+      let list = document.getElementById("newplaylist");
+      let clear = document.getElementById("clearlist");
+       if(list.style.display = 'block') {
+        list.style.display = 'none';
+        clear.style.display = 'none';
+        fileInput.value = '';
+        fileArray = [];
+        pauseTrack();
+        removeClass();
+        loadTrack(track_index);
+       }
     }
 
    // Use track_list only for URL sources
@@ -385,8 +377,8 @@
       if (track_index = number)
        track_index.number = '';
       else track_index = track_index;
-      loadTrack(track_index);
-      playTrack();
+       loadTrack(track_index);
+       playTrack();
     }
 
     function seekTo() {
@@ -428,11 +420,14 @@
 
     function showHidePlaylist() {
      let pls = document.querySelectorAll(".playlist, .newplaylist");
+     let clearpls = document.querySelector(".clearlist");
      for (let i = 0; i < pls.length; i++) {
       if (pls[i].style.display === "none") {
        pls[i].style.display = "block";
+       clearpls.style.display = "block";
       } else {
        pls[i].style.display = "none";
+       clearpls.style.display = "none";
       }
      }
     }
@@ -581,7 +576,8 @@
       }, 8000);
     }
 
-    // change background image . add new images
+    // change background image
+    // put more images in the img folder and add it here: ['img/newimage']
     const images = ['img/js-player-bg3.png', 'img/js-player-bg2.png', 'img/js-player-bg_psy.png', 'img/true_transpa', 'img/light_transpa.png'];
     let currentImageIndex = 0;
 
