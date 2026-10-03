@@ -50,7 +50,6 @@ body {
         font-size: 16px;
         font-weight: bold;
         background: #393942;
-        padding: 0 5px;
         border: 1px solid #4f525a;
         border-radius: 5px;
         z-index: 1000;
@@ -79,12 +78,9 @@ body {
 }
 .clearlist {
         position: absolute;
-        margin-top: 2px;
         right: 10px;
-        padding: 1px 6px !important;
         z-index: 1000;
         background: #393942;
-        padding: 0 5px;
         border: 1px solid #4f525a;
         border-radius: 5px;
         cursor: pointer;
@@ -223,7 +219,7 @@ body {
         z-index: 120;
 }
 .volume_slider {
-        width: 150px;
+        width: 142px;
 }
 .seek_slider {
         width: 250px;
@@ -285,6 +281,7 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
 .fa-xmark {
         font-size: 18px;
         margin-top: 2px;
+        padding: 1px 5px;
 }
 .fa, .tracknumber, .current-time, .total-duration, .volumevalue {
         color: #a1d4ff;
@@ -294,7 +291,7 @@ input[type="range"]::-moz-range-thumb {  /* Firefox  */
         right:5px;
         margin-top:2px
 }
-.fa-file-audio, fa-radio {
+.fa-file-audio {
         font-size: 16px;
         margin-top: 1px;
 }
