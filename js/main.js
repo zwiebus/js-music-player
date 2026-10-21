@@ -11,15 +11,15 @@
     const total_duration = document.querySelector(".total-duration");
     const volumevalue = document.querySelector(".volumevalue");
     const fileInput = document.getElementById('fileInput');
+    const container = document.getElementById('container');
 
     // Predefined variables
     let blob = 0;
     let track_index = 0;
-    let files_index = 0;
     let isPlaying = false;
     let updateTimer;
-    let fileArray = [];
-    let lens = fileArray.lenght;
+    let tracks = [];
+    let lens = tracks.lenght;
 
     // Magic numbers (file signatures) for audio formats
     const AUDIO_MAGIC_NUMBERS = {
@@ -120,7 +120,7 @@
       });
     }
 
-    // validate FileList
+    // validate Files
     fileInput.addEventListener('input', async () => {
       const files = fileInput.files;
       const requiredTypes = ['audio/mpeg', 'audio/wav', 'audio/ogg', 'video/ogg', 'application/ogg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/vnd.dlna.adts', 'audio/flac', 'audio/opus'];
@@ -157,11 +157,10 @@
           fileInput.value = '';
           return;
         }
+       tracks.push(file);
       }
-      tracks = Array.from(files);
-      fileArray = fileArray.concat(tracks);
-      // console.log(fileArray);
-      loadFiles(fileArray);
+     // tracks.forEach(name => console.log(name));
+     loadFiles();
     });
 
    // Create and config audio element
@@ -184,64 +183,17 @@
       playPauseTrack.classList.add("fa-pause-circle");
     });
 
-    // Load audio files
-    function loadFiles(fileArray) {
-     lens = fileArray.length;
-      let _next = 0;
-       if(lens > 0){
-        nextFile(_next);
-        pauseTrack();
-       }
-     newPl();
-    }
-
-   // to do : load files without the need of nextFile(n)
-/*    function loadFiles(files_index) {
-       fileArray.forEach((file, index) => {
-        let url = URL.createObjectURL(file);
-        curr_track.src = url;
-        curr_track.load();
-        clearInterval(updateTimer);
-        resetValues();
-        let fileName = file.name;
-        let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_.]/g,' ').replace(/\.[^.]*$/,'');
-        track_name.textContent = title;
-        tracknumber.textContent = '';
-        tracknumber.classList.add('fa','fa-file-audio');
-        updateTimer = setInterval(seekUpdate, 1000);
-        pauseTrack();
-        smallName();
-        activeTrack();
-       });
-       newPl();
-      } */
-
-    function nextFile(n) {
-     clearInterval(updateTimer);
-     resetValues();
-     let url = URL.createObjectURL(fileArray[n]);
-     curr_track.src = url;
-     curr_track.load();
-     let fileName = fileArray[n].name;
-     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_.]/g,' ').replace(/\.[^.]*$/,'');
-     track_name.textContent = title;
-     tracknumber.textContent = '';
-     tracknumber.classList.add('fa','fa-file-audio');
-     updateTimer = setInterval(seekUpdate, 1000);
-     playTrack();
-     smallName();
-     activeTrack();
-    }
-
-  // create new playlist
-    function newPl() {
+    // load files and create playlist
+    function loadFiles() {
      let newplaylist = document.getElementById("newplaylist");
+     let clear = document.getElementById("clearlist");
      newplaylist.innerText = '';
-     fileArray.forEach((file, index) => {
-       const fileItem = document.createElement('div');
+       tracks.forEach((file, index) => {
+        let fileName = file.name;
      // File names often contain characters that do not belong in the title. Clean these and the file extension up.
-       let title = file.name.replace(/^[0-9. -]+/,'').replace(/[_.]/g,' ').replace(/\.[^.]*$/,'');
-       let number = index + 1;
+        let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
+        const fileItem = document.createElement('div');
+        let number = index + 1;
         fileItem.classList.add('track-number');
         fileItem.setAttribute('data-track', number);
          if (number < 10) {
@@ -259,13 +211,33 @@
          smallName();
          activeTrack();
         };
-       newplaylist.appendChild(fileItem);
-       activeTrack();
-        //autoscrollPls();   // comment in for autoscroll track-number text
-     });
+        newplaylist.appendChild(fileItem);
+        activeTrack();
+       });
      newplaylist.style.display = 'block';
-     let clear = document.getElementById("clearlist");
-      clear.style.display = 'block';
+     clear.style.display = 'block';
+     lens = tracks.length;
+     let _next = 0;
+     nextFile(_next);
+     pauseTrack();
+    }
+
+    function nextFile(n) {
+     clearInterval(updateTimer);
+     resetValues();
+     let url = URL.createObjectURL(tracks[n]);
+     curr_track.src = url;
+     curr_track.load();
+     let fileName = tracks[n].name;
+     let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
+     track_name.textContent = title;
+     tracknumber.textContent = '';
+     tracknumber.classList.add('fa','fa-file-audio');
+     updateTimer = setInterval(seekUpdate, 1000);
+     playTrack();
+     smallName();
+     activeTrack();
+     //autoscrollPls();  // comment in for autoscroll track-number text
     }
 
     // remove files and close file playlist
@@ -279,7 +251,7 @@
         list.style.display = 'none';
         clear.style.display = 'none';
         fileInput.value = '';
-        fileArray = [];
+        tracks = [];
         pauseTrack();
         removeClass();
         loadTrack(track_index);
@@ -386,7 +358,7 @@
     }
 
     function prevBlob() {
-     let first = fileArray[0];
+     let first = tracks[0];
       if(first) {
        blob = (blob + lens - 1) % lens;
       } else {
@@ -434,7 +406,7 @@
     }
 
    // Load the first track in the tracklist
-    loadTrack(track_index);
+       loadTrack(track_index);
 
    // display/hide playlists, trackdetails
     const playlists = document.getElementById("showHidePlaylist");
@@ -466,7 +438,6 @@
      }
     }
 
-
     const volumeX = document.querySelector(".fa-volume-xmark");
     volumeX.addEventListener('click', volX);
 
@@ -475,7 +446,6 @@
      curr_track.volume = volume_slider.value;
      volumevalue.innerText = volume_slider.value  + " %";
     }
-
 
     const volumeH = document.querySelector(".fa-volume-high");
     volumeH.addEventListener('click', volH);
@@ -497,14 +467,14 @@
   // highlight the current track in playlists
     function activeTrack() {
       const track = track_name;
-      const tracks = document.querySelectorAll(".track-number");
-       for (let i = 0; i < tracks.length; i++) {
-        let title = tracks[i].textContent.replace(/^[0-9. -]+/,'').replace(/[_.\n]/g,' ').replace(/\.[^.]*$/,'');
+      const track_div = document.querySelectorAll(".track-number");
+       for (let i = 0; i < track_div.length; i++) {
+        let title = track_div[i].textContent.replace(/^[0-9. -]+/,'').replace(/[_\n]/g,' ').replace(/\.[^.]*$/,'');
          if(track.textContent == title) {
-          tracks[i].classList.add("active");
-          tracks[i].scrollIntoView();   // optional if playlists height is greater than specified
+          track_div[i].classList.add("active");
+          track_div[i].scrollIntoView();   // optional if playlists height is greater than specified
          } else {
-          tracks[i].classList.remove("active");
+          track_div[i].classList.remove("active");
          }
        }
     }
@@ -561,7 +531,7 @@
        }
         track_name.textContent = 'Audio error ... ';
         fileInput.value = '';
-        fileArray.pop();
+        tracks.pop();
       }
      });
 
