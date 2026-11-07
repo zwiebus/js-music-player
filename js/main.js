@@ -190,7 +190,7 @@
      newplaylist.innerText = '';
        tracks.forEach((file, index) => {
         let fileName = file.name;
-     // File names often contain characters that do not belong in the title. Clean these and the file extension up.
+     // File names often contain characters that do not belong in the title. Clean theese and the file extension up.
         let title = fileName.replace(/^[0-9. -]+/,'').replace(/[_]/g,' ').replace(/\.[^.]*$/,'');
         const fileItem = document.createElement('div');
         let number = index + 1;
@@ -247,15 +247,14 @@
     function clearlist() {
       let list = document.getElementById("newplaylist");
       let clear = document.getElementById("clearlist");
-       if(list.style.display = 'block') {
         list.style.display = 'none';
+        list.innerText = '';
         clear.style.display = 'none';
         fileInput.value = '';
         tracks = [];
         pauseTrack();
         removeClass();
         loadTrack(track_index);
-       }
     }
 
    // Use track_list only for URL sources
@@ -408,22 +407,17 @@
    // Load the first track in the tracklist
        loadTrack(track_index);
 
-   // display/hide playlists, trackdetails
+   // display/hide playlist, trackdetails
     const playlists = document.getElementById("showHidePlaylist");
     playlists.addEventListener('click', showHidePlaylist);
 
-    function showHidePlaylist() {
-     let pls = document.querySelectorAll(".playlist, .newplaylist");
-     let clearpls = document.querySelector(".clearlist");
-     for (let i = 0; i < pls.length; i++) {
-      if (pls[i].style.display === "none") {
-       pls[i].style.display = "block";
-       clearpls.style.display = "block";
+   function showHidePlaylist() {
+     let pls = document.querySelector(".playlist");
+      if (pls.style.display === "none") {
+       pls.style.display = "block";
       } else {
-       pls[i].style.display = "none";
-       clearpls.style.display = "none";
+       pls.style.display = "none";
       }
-     }
     }
 
     const showHideTime = document.getElementById("showHideTime");
